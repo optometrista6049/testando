@@ -24,17 +24,15 @@ export function createBootScreen(onStart){
     boot.id = 'bootScreen';
 
     // =====================================================
-    // BACKGROUND IMAGE
+    // BACKGROUND
     // =====================================================
 
-    const bg = document.createElement('img');
+    const bg = document.createElement('div');
 
     bg.id = 'bootBackground';
 
-    bg.src =
-        '/assets/ui/boot/bootBackground.jpg';
-
-    boot.appendChild(bg);
+    // IMPORTANT:
+    // set AFTER append for mobile compatibility
 
     // =====================================================
     // OVERLAY
@@ -43,8 +41,6 @@ export function createBootScreen(onStart){
     const overlay = document.createElement('div');
 
     overlay.id = 'bootOverlay';
-
-    boot.appendChild(overlay);
 
     // =====================================================
     // PANEL
@@ -98,51 +94,51 @@ export function createBootScreen(onStart){
 
     button.addEventListener('click', async ()=>{
 
-        // =================================================
-        // FULLSCREEN
-        // =================================================
+        try{
 
-        if(document.documentElement.requestFullscreen){
+            // =============================================
+            // FULLSCREEN
+            // =============================================
 
-            try{
+            if(document.documentElement.requestFullscreen){
 
                 await document
                     .documentElement
                     .requestFullscreen();
 
-            }catch(e){}
+            }
 
-        }
+        }catch(e){}
 
-        // =================================================
-        // LANDSCAPE LOCK
-        // =================================================
+        try{
 
-        if(
+            // =============================================
+            // LANDSCAPE
+            // =============================================
 
-            screen.orientation &&
-            screen.orientation.lock
+            if(
 
-        ){
+                screen.orientation &&
+                screen.orientation.lock
 
-            try{
+            ){
 
                 await screen.orientation
                     .lock('landscape');
 
-            }catch(e){}
+            }
 
-        }
+        }catch(e){}
 
-        // =================================================
+        // =============================================
         // REMOVE BOOT
-        // =================================================
+        // =============================================
 
         boot.remove();
 
-        // =================================================
+        // =============================================
         // START GAME
-        // =================================================
+        // =============================================
 
         if(onStart){
 
@@ -155,15 +151,27 @@ export function createBootScreen(onStart){
     panel.appendChild(button);
 
     // =====================================================
-    // APPEND PANEL
+    // APPEND
     // =====================================================
+
+    boot.appendChild(bg);
+
+    boot.appendChild(overlay);
 
     boot.appendChild(panel);
 
+    document.body.appendChild(boot);
+
     // =====================================================
-    // APPEND TO BODY
+    // VERY IMPORTANT:
+    // APPLY BG AFTER DOM INSERT
     // =====================================================
 
-    document.body.appendChild(boot);
+    requestAnimationFrame(()=>{
+
+        bg.style.backgroundImage =
+            "url('/assets/ui/boot/bootBackground.jpg')";
+
+    });
 
 }
