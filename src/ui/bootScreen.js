@@ -41,7 +41,7 @@ bg.style.height = '100%';
 
 bg.style.backgroundImage =
 
-    "url('./assets/ui/boot/bootBackground.jpg')";
+    "url('/assets/ui/boot/bootBackground.jpg')";
 
 bg.style.backgroundSize = 'cover';
 
