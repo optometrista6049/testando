@@ -58,7 +58,7 @@ BACKGROUND IMAGE
     inset:0;
 
     background-image:
-    url('./assets/ui/boot/bootBackground.jpg');
+    url('../assets/ui/boot/bootBackground.jpg');
 
     background-size:cover;
 
