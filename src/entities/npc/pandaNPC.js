@@ -42,9 +42,9 @@ export function loadPandaNPC(){
 
             panda.position.set(
 
-                6,   // X
+                2,   // X
                 0,   // Y
-                -4   // Z
+                2   // Z
 
             );
 
