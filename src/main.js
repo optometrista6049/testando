@@ -85,7 +85,7 @@ import {
 import {
 
     loadPandaNPC,
-    updatePandaNPC
+    
 
 } from './entities/npc/pandaNPC.js';
 
