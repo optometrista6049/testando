@@ -9,18 +9,6 @@ import { scene }
 from '../../core/scene.js';
 
 // =====================================================
-// PANDA NPC
-// =====================================================
-
-let panda;
-
-let mixer;
-
-let currentAction = null;
-
-const actions = {};
-
-// =====================================================
 // LOAD PANDA NPC
 // =====================================================
 
@@ -34,39 +22,51 @@ export function loadPandaNPC(){
 
         (gltf)=>{
 
-            panda = gltf.scene;
+            console.log('PANDA LOADED');
+
+            const panda = gltf.scene;
 
             // =================================================
-            // POSITION
+            // VERY VISIBLE POSITION
             // =================================================
 
             panda.position.set(
 
-                2,   // X
-                3,   // Y
-                2   // Z
+                0,
+                5,
+                0
 
             );
 
             // =================================================
-            // SCALE
+            // VERY LARGE SCALE
             // =================================================
 
-            panda.scale.setScalar(1.5);
+            panda.scale.set(
+
+                10,
+                10,
+                10
+
+            );
 
             // =================================================
-            // ROTATION
+            // FORCE VISIBILITY
             // =================================================
 
-            panda.rotation.y = Math.PI;
+            panda.visible = true;
 
             // =================================================
-            // SHADOWS
+            // DEBUG MATERIAL
             // =================================================
 
             panda.traverse((child)=>{
 
                 if(child.isMesh){
+
+                    console.log('MESH FOUND');
+
+                    child.visible = true;
 
                     child.castShadow = true;
 
@@ -82,42 +82,7 @@ export function loadPandaNPC(){
 
             scene.add(panda);
 
-            // =================================================
-            // ANIMATION MIXER
-            // =================================================
-
-            mixer =
-                new THREE.AnimationMixer(
-                    panda
-                );
-
-            // =================================================
-            // LOAD ALL ANIMATIONS
-            // =================================================
-
-            gltf.animations.forEach((clip)=>{
-
-                const action =
-                    mixer.clipAction(clip);
-
-                actions[clip.name] = action;
-
-                console.log(
-
-                    'Panda animation found:',
-                    clip.name
-
-                );
-
-            });
-
-            // =================================================
-            // START WITH WAVE
-            // =================================================
-
-            playAnimationByKeyword('wave');
-
-            
+            console.log('PANDA ADDED');
 
         },
 
@@ -126,121 +91,12 @@ export function loadPandaNPC(){
         (error)=>{
 
             console.error(
-
-                'Error loading Panda:',
+                'PANDA LOAD ERROR:',
                 error
-
             );
 
         }
 
     );
-
-}
-
-// =====================================================
-// FIND ANIMATION
-// =====================================================
-
-function findAnimation(keyword){
-
-    keyword = keyword.toLowerCase();
-
-    for(const name in actions){
-
-        if(
-
-            name
-            .toLowerCase()
-            .includes(keyword)
-
-        ){
-
-            return actions[name];
-
-        }
-
-    }
-
-    return null;
-
-}
-
-// =====================================================
-// PLAY ANIMATION BY KEYWORD
-// =====================================================
-
-function playAnimationByKeyword(keyword){
-
-    const action =
-        findAnimation(keyword);
-
-    if(!action){
-
-        console.warn(
-
-            'Animation not found:',
-            keyword
-
-        );
-
-        return;
-
-    }
-
-    // =================================================
-    // FADE OUT PREVIOUS
-    // =================================================
-
-    if(currentAction){
-
-        currentAction.fadeOut(0.3);
-
-    }
-
-    // =================================================
-    // PLAY NEW
-    // =================================================
-
-    currentAction = action;
-
-    currentAction
-        .reset()
-        .fadeIn(0.3)
-        .play();
-
-}
-
-// =====================================================
-// PUBLIC NPC ANIMATION CONTROL
-// =====================================================
-
-export function pandaPlay(animationName){
-
-    playAnimationByKeyword(animationName);
-
-}
-
-// =====================================================
-// GET PANDA
-// =====================================================
-
-export function getPanda(){
-
-    return panda;
-
-}
-
-// =====================================================
-// UPDATE PANDA
-// =====================================================
-
-export function updatePandaNPC(delta){
-
-    if(mixer){
-
-        mixer.update(delta);
-
-    }
 
 }
