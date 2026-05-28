@@ -132,7 +132,7 @@ from './systems/inputSystem.js';
 
 import {
 
-    initBootScreen
+    setupBootScreen
 
 }
 from './ui/bootScreen.js';
@@ -201,4 +201,4 @@ function startGame(){
 // INIT BOOT SCREEN
 // ======================================================
 
-initBootScreen(startGame);
+setupBootScreen(startGame);
