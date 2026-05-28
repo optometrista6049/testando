@@ -162,7 +162,7 @@ function startGame(){
 
       updatePlayer,
       updateClouds,
-	  updatePandaNPC
+	  
 
     ]
 
