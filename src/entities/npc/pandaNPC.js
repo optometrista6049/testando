@@ -1,102 +1,48 @@
 import * as THREE from 'three';
 
-import {
-    GLTFLoader
-}
-from 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
-
 import { scene }
 from '../../core/scene.js';
 
-// =====================================================
-// LOAD PANDA NPC
-// =====================================================
-
 export function loadPandaNPC(){
 
-    const loader = new GLTFLoader();
+    console.log('TEST CUBE');
 
-    loader.load(
+    const geometry =
+        new THREE.BoxGeometry(
 
-        './assets/models/npc/Panda.glb',
+            5,
+            5,
+            5
 
-        (gltf)=>{
+        );
 
-            console.log('PANDA LOADED');
+    const material =
+        new THREE.MeshBasicMaterial({
 
-            const panda = gltf.scene;
+            color:0xff0000
 
-            // =================================================
-            // VERY VISIBLE POSITION
-            // =================================================
+        });
 
-            panda.position.set(
+    const cube =
+        new THREE.Mesh(
 
-                0,
-                5,
-                0
+            geometry,
+            material
 
-            );
+        );
 
-            // =================================================
-            // VERY LARGE SCALE
-            // =================================================
+    cube.position.set(
 
-            panda.scale.set(
-
-                10,
-                10,
-                10
-
-            );
-
-            // =================================================
-            // FORCE VISIBILITY
-            // =================================================
-
-            panda.visible = true;
-
-            // =================================================
-            // DEBUG MATERIAL
-            // =================================================
-
-            panda.traverse((child)=>{
-
-                if(child.isMesh){
-
-                    console.log('MESH FOUND');
-
-                    child.visible = true;
-
-                    child.castShadow = true;
-
-                    child.receiveShadow = true;
-
-                }
-
-            });
-
-            // =================================================
-            // ADD TO SCENE
-            // =================================================
-
-            scene.add(panda);
-
-            console.log('PANDA ADDED');
-
-        },
-
-        undefined,
-
-        (error)=>{
-
-            console.error(
-                'PANDA LOAD ERROR:',
-                error
-            );
-
-        }
+        0,
+        5,
+        0
 
     );
+
+    scene.add(cube);
+
+    console.log('CUBE ADDED');
+
+}
 
 }
