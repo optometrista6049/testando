@@ -13,271 +13,405 @@ let continueButton = null;
 
 export function createDialogueUI(){
 
+    const screenWidth =
+        window.innerWidth;
 
-root =
-    document.createElement('div');
+    const isMobile =
+        screenWidth < 768;
 
-Object.assign(
+    const isTablet =
+        screenWidth >= 768 &&
+        screenWidth < 1200;
 
-    root.style,
+    root =
+        document.createElement('div');
 
-    {
+    Object.assign(
 
-        display:'none',
+        root.style,
 
-        position:'fixed',
+        {
 
-        left:'50%',
+            display:'none',
 
-        bottom:'30px',
+            position:'fixed',
 
-        transform:'translateX(-50%)',
+            left:'50%',
 
-        width:'90%',
+            bottom:
 
-        maxWidth:'1000px',
+                isMobile
 
-        background:'rgba(15,15,15,0.88)',
+                    ? '8px'
 
-        border:'2px solid #d6b06a',
+                    : '20px',
 
-        borderRadius:'20px',
+            transform:'translateX(-50%)',
 
-        padding:'20px',
+            width:
 
-        color:'white',
+                isMobile
 
-        zIndex:'15000'
+                    ? '96%'
 
-    }
+                    : isTablet
 
-);
+                        ? '92%'
 
-const header =
-    document.createElement('div');
+                        : '90%',
 
-Object.assign(
+            maxWidth:
 
-    header.style,
+                isMobile
 
-    {
+                    ? '500px'
 
-        display:'flex',
+                    : isTablet
 
-        alignItems:'center',
+                        ? '800px'
 
-        gap:'20px',
+                        : '1000px',
 
-        marginBottom:'15px'
+            maxHeight:
 
-    }
+                isMobile
 
-);
+                    ? '25vh'
 
-portraitImage =
-    document.createElement('img');
+                    : isTablet
 
-Object.assign(
+                        ? '35vh'
 
-    portraitImage.style,
+                        : 'none',
 
-    {
+            overflowY:
 
-        width:'140px',
+                isMobile || isTablet
 
-        height:'140px',
+                    ? 'auto'
 
-        objectFit:'cover',
+                    : 'visible',
 
-        borderRadius:'12px',
+            background:'rgba(15,15,15,0.88)',
 
-        border:'2px solid #d6b06a'
+            border:'2px solid #d6b06a',
 
-    }
+            borderRadius:'20px',
 
-);
+            padding:
 
-speakerLabel =
-    document.createElement('h3');
+                isMobile
 
-Object.assign(
+                    ? '8px'
 
-    speakerLabel.style,
+                    : isTablet
 
-    {
+                        ? '14px'
 
-        margin:'0',
+                        : '20px',
 
-        fontSize:'28px',
+            color:'white',
 
-        color:'#f2d08a'
+            zIndex:'15000'
 
-    }
+        }
 
-);
+    );
 
-header.appendChild(
-    portraitImage
-);
+    const header =
+        document.createElement('div');
 
-header.appendChild(
-    speakerLabel
-);
+    Object.assign(
 
-textLabel =
-    document.createElement('p');
+        header.style,
 
-Object.assign(
+        {
 
-    textLabel.style,
+            display:'flex',
 
-    {
+            alignItems:'center',
 
-        fontSize:'22px',
+            gap:
 
-        lineHeight:'1.6',
+                isMobile
 
-        marginBottom:'20px'
+                    ? '10px'
 
-    }
+                    : isTablet
 
-);
+                        ? '15px'
 
-continueButton =
-    document.createElement('button');
+                        : '20px',
 
-continueButton.innerText =
-    'Continuar';
+            marginBottom:'10px'
 
-Object.assign(
+        }
 
-    continueButton.style,
+    );
 
-    {
+    portraitImage =
+        document.createElement('img');
 
-        padding:'12px 20px',
+    Object.assign(
 
-        fontSize:'18px',
+        portraitImage.style,
 
-        cursor:'pointer',
+        {
 
-        borderRadius:'10px',
+            width:
 
-        border:'none'
+                isMobile
 
-    }
+                    ? '55px'
 
-);
+                    : isTablet
 
-continueButton.onclick =
-    nextDialoguePage;
+                        ? '90px'
 
-root.appendChild(
-    header
-);
+                        : '140px',
 
-root.appendChild(
-    textLabel
-);
+            height:
 
-root.appendChild(
-    continueButton
-);
+                isMobile
 
-document.body.appendChild(
-    root
-);
+                    ? '55px'
 
+                    : isTablet
+
+                        ? '90px'
+
+                        : '140px',
+
+            objectFit:'cover',
+
+            borderRadius:'12px',
+
+            border:'2px solid #d6b06a',
+
+            flexShrink:'0'
+
+        }
+
+    );
+
+    speakerLabel =
+        document.createElement('h3');
+
+    Object.assign(
+
+        speakerLabel.style,
+
+        {
+
+            margin:'0',
+
+            color:'#f2d08a',
+
+            fontSize:
+
+                isMobile
+
+                    ? '18px'
+
+                    : isTablet
+
+                        ? '24px'
+
+                        : '28px'
+
+        }
+
+    );
+
+    header.appendChild(
+        portraitImage
+    );
+
+    header.appendChild(
+        speakerLabel
+    );
+
+    textLabel =
+        document.createElement('p');
+
+    Object.assign(
+
+        textLabel.style,
+
+        {
+
+            marginTop:'0',
+
+            marginBottom:'10px',
+
+            lineHeight:'1.5',
+
+            fontSize:
+
+                isMobile
+
+                    ? '15px'
+
+                    : isTablet
+
+                        ? '18px'
+
+                        : '22px'
+
+        }
+
+    );
+
+    continueButton =
+        document.createElement('button');
+
+    continueButton.innerText =
+        'Continuar';
+
+    Object.assign(
+
+        continueButton.style,
+
+        {
+
+            padding:
+
+                isMobile
+
+                    ? '6px 12px'
+
+                    : isTablet
+
+                        ? '8px 16px'
+
+                        : '12px 20px',
+
+            fontSize:
+
+                isMobile
+
+                    ? '14px'
+
+                    : isTablet
+
+                        ? '16px'
+
+                        : '18px',
+
+            cursor:'pointer',
+
+            borderRadius:'10px',
+
+            border:'none'
+
+        }
+
+    );
+
+    continueButton.onclick =
+        nextDialoguePage;
+
+    root.appendChild(
+        header
+    );
+
+    root.appendChild(
+        textLabel
+    );
+
+    root.appendChild(
+        continueButton
+    );
+
+    document.body.appendChild(
+        root
+    );
 
 }
 
 export function showDialogue(dialogue){
 
+    dialogueState.active =
+        true;
 
-dialogueState.active = true;
+    dialogueState.currentDialogue =
+        dialogue;
 
-dialogueState.currentDialogue =
-    dialogue;
+    dialogueState.currentPage =
+        0;
 
-dialogueState.currentPage = 0;
+    root.style.display =
+        'block';
 
-root.style.display =
-    'block';
-
-updateDialogue();
-
+    updateDialogue();
 
 }
 
 function updateDialogue(){
 
+    const dialogue =
+        dialogueState.currentDialogue;
 
-const dialogue =
-    dialogueState.currentDialogue;
+    speakerLabel.innerText =
+        dialogue.speaker;
 
-speakerLabel.innerText =
-    dialogue.speaker;
+    if(dialogue.portrait){
 
-if(dialogue.portrait){
+        portraitImage.src =
+            dialogue.portrait;
 
-    portraitImage.src =
-        dialogue.portrait;
+        portraitImage.style.display =
+            'block';
 
-    portraitImage.style.display =
-        'block';
+    }else{
 
-}else{
+        portraitImage.style.display =
+            'none';
 
-    portraitImage.style.display =
-        'none';
+    }
 
-}
+    textLabel.innerText =
 
-textLabel.innerText =
-    dialogue.pages[
-        dialogueState.currentPage
-    ];
-
+        dialogue.pages[
+            dialogueState.currentPage
+        ];
 
 }
 
 function nextDialoguePage(){
 
+    const dialogue =
+        dialogueState.currentDialogue;
 
-const dialogue =
-    dialogueState.currentDialogue;
+    dialogueState.currentPage++;
 
-dialogueState.currentPage++;
+    if(
 
-if(
+        dialogueState.currentPage >=
 
-    dialogueState.currentPage >=
-    dialogue.pages.length
+        dialogue.pages.length
 
-){
+    ){
 
-    closeDialogue();
+        closeDialogue();
 
-    return;
+        return;
 
-}
+    }
 
-updateDialogue();
-
+    updateDialogue();
 
 }
 
 export function closeDialogue(){
 
+    dialogueState.active =
+        false;
 
-dialogueState.active =
-    false;
+    dialogueState.currentDialogue =
+        null;
 
-dialogueState.currentDialogue =
-    null;
-
-root.style.display =
-    'none';
-
+    root.style.display =
+        'none';
 
 }
