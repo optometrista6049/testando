@@ -7,6 +7,8 @@ let portraitImage = null;
 
 let speakerLabel = null;
 
+let textContainer = null;
+
 let textLabel = null;
 
 let continueButton = null;
@@ -71,26 +73,6 @@ export function createDialogueUI(){
                         ? '800px'
 
                         : '1000px',
-
-            maxHeight:
-
-                isMobile
-
-                    ? '25vh'
-
-                    : isTablet
-
-                        ? '35vh'
-
-                        : 'none',
-
-            overflowY:
-
-                isMobile || isTablet
-
-                    ? 'auto'
-
-                    : 'visible',
 
             background:'rgba(15,15,15,0.88)',
 
@@ -231,6 +213,44 @@ export function createDialogueUI(){
         speakerLabel
     );
 
+    textContainer =
+        document.createElement('div');
+
+    Object.assign(
+
+        textContainer.style,
+
+        {
+
+            maxHeight:
+
+                isMobile
+
+                    ? '12vh'
+
+                    : isTablet
+
+                        ? '16vh'
+
+                        : '220px',
+
+            overflowY:'auto',
+
+            scrollbarWidth:'thin',
+
+            borderTop:
+                '1px solid rgba(255,255,255,0.15)',
+
+            borderBottom:
+                '1px solid rgba(255,255,255,0.15)',
+
+            padding:'8px 0',
+
+            marginBottom:'10px'
+        }
+
+    );
+
     textLabel =
         document.createElement('p');
 
@@ -240,9 +260,7 @@ export function createDialogueUI(){
 
         {
 
-            marginTop:'0',
-
-            marginBottom:'10px',
+            margin:'0',
 
             lineHeight:'1.5',
 
@@ -260,6 +278,10 @@ export function createDialogueUI(){
 
         }
 
+    );
+
+    textContainer.appendChild(
+        textLabel
     );
 
     continueButton =
@@ -316,7 +338,7 @@ export function createDialogueUI(){
     );
 
     root.appendChild(
-        textLabel
+        textContainer
     );
 
     root.appendChild(
@@ -331,17 +353,17 @@ export function createDialogueUI(){
 
 export function showDialogue(dialogue){
 
-    dialogueState.active =
-        true;
+    dialogueState.active = true;
 
     dialogueState.currentDialogue =
         dialogue;
 
-    dialogueState.currentPage =
-        0;
+    dialogueState.currentPage = 0;
 
     root.style.display =
         'block';
+
+    textContainer.scrollTop = 0;
 
     updateDialogue();
 
@@ -370,6 +392,8 @@ function updateDialogue(){
 
     }
 
+    textContainer.scrollTop = 0;
+
     textLabel.innerText =
 
         dialogue.pages[
@@ -388,7 +412,6 @@ function nextDialoguePage(){
     if(
 
         dialogueState.currentPage >=
-
         dialogue.pages.length
 
     ){
