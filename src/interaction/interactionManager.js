@@ -50,6 +50,8 @@ from '../entities/npc/teleronNPC.js';
 
 let interactionTarget = null;
 
+import { dialogueState }
+from '../dialogue/dialogueState.js';
 
 // =====================================
 // PANDA
@@ -155,6 +157,18 @@ const teleronBusyDialogue = {
 // =====================================
 
 export function updateInteractionSystem(){
+	
+	if(
+
+    dialogueState.active
+
+){
+
+    hideInteraction();
+
+    return;
+
+}
 
     const player =
         runtimeState.player;
@@ -311,6 +325,16 @@ export function updateInteractionSystem(){
 // =====================================
 
 export function tryInteraction(){
+	
+	if(
+
+    dialogueState.active
+
+){
+
+    return;
+
+}
 
     if(!interactionTarget){
 
