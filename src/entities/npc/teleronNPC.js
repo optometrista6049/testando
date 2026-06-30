@@ -157,8 +157,3 @@ export function getTeleronNPC(){
 
 }
 
-export function getTeleronNPC(){
-
-    return TeleronNPC;
-
-}
