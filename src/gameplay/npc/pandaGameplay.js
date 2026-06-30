@@ -4,8 +4,6 @@
 
 import {
 
-    getPandaNPC,
-
     setPandaIdle
 
 }
@@ -40,27 +38,11 @@ import {
 
 from '../world/worldUtils.js';
 
-import {
-
-    registerInteractable
-
-}
-
-from '../interaction/interactionRegistry.js';
-
+// ======================================================
+// INTERACTION
 // ======================================================
 
-import {
-
-    pandaState
-
-}
-
-from './pandaState.js';
-
-// ======================================================
-
-function interactWithPanda(){
+export function interactWithPanda(){
 
     if(
 
@@ -109,45 +91,14 @@ function interactWithPanda(){
 }
 
 // ======================================================
+// UPDATE
+// ======================================================
 
 export function updatePandaGameplay(){
 
-    const panda =
-
-        getPandaNPC();
-
-    if(
-
-        !panda
-
-    ){
-
-        return;
-
-    }
-
- if(
-
-    pandaState.registered
-
-){
-
-    return;
-
-}
-
-    registerInteractable({
-
-        id:'panda',
-
-        object:panda,
-
-        radius:3,
-
-        interact:interactWithPanda
-
-    });
-
-    registered = true;
+    // Reservado para futuras IA,
+    // movimientos,
+    // misiones,
+    // etc.
 
 }
