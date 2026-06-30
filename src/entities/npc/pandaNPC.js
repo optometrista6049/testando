@@ -16,13 +16,7 @@ import {
 }
 from './npcRegistry.js';
 
-import {
 
-    interactWithPanda
-
-}
-
-from '../../gameplay/npc/pandaGameplay.js';
 
 let PandaNPC;
 
