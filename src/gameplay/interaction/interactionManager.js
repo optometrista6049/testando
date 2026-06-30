@@ -1,6 +1,7 @@
 // ======================================================
 // INTERACTION SYSTEM
-// Sistema global de interacción del juego.
+// Sistema global de interacción.
+// Gestiona NPC y Props.
 // ======================================================
 
 import {
@@ -37,6 +38,14 @@ import {
 
 from './interactionRegistry.js';
 
+import {
+
+    findClosestNPC
+
+}
+
+from '../../entities/npc/npcRegistry.js';
+
 // ======================================================
 
 let currentInteractable = null;
@@ -50,7 +59,7 @@ export function updateInteractionSystem(){
     currentInteractable = null;
 
     //--------------------------------------------------
-    // Nunca permitir interacción durante diálogos
+    // Nunca durante diálogos
     //--------------------------------------------------
 
     if(
@@ -84,16 +93,42 @@ export function updateInteractionSystem(){
     }
 
     //--------------------------------------------------
-    // Buscar interactuable cercano
+    // Buscar NPC cercano
     //--------------------------------------------------
 
-    const interactables = getInteractables();
+    const closestNPC =
 
-    for(const interactable of interactables){
+        findClosestNPC(
+
+            player.position
+
+        );
+
+    //--------------------------------------------------
+    // Buscar Prop cercano
+    //--------------------------------------------------
+
+    let closestProp = null;
+
+    let closestPropDistance = Infinity;
+
+    const interactables =
+
+        getInteractables();
+
+    for(
+
+        const interactable
+
+        of interactables
+
+    ){
 
         if(
 
-            !interactable.object
+            !interactable.object ||
+
+            !interactable.object.visible
 
         ){
 
@@ -111,29 +146,93 @@ export function updateInteractionSystem(){
 
         if(
 
-            distance <= interactable.radius
+            distance <= interactable.radius &&
+
+            distance < closestPropDistance
 
         ){
 
-            currentInteractable = interactable;
+            closestPropDistance = distance;
 
-            showInteraction(
-
-                interactable.label ??
-
-                'Hablar'
-
-            );
-
-            return;
+            closestProp = interactable;
 
         }
 
     }
 
     //--------------------------------------------------
+    // Elegir el objetivo más cercano
+    //--------------------------------------------------
 
-    hideInteraction();
+    let npcDistance = Infinity;
+
+    if(
+
+        closestNPC
+
+    ){
+
+        npcDistance =
+
+            player.position.distanceTo(
+
+                closestNPC.object.position
+
+            );
+
+    }
+
+    if(
+
+        closestNPC &&
+
+        npcDistance <= closestPropDistance
+
+    ){
+
+        currentInteractable = {
+
+            label : 'Hablar',
+
+            interact : closestNPC.interact
+
+        };
+
+    }
+
+    else if(
+
+        closestProp
+
+    ){
+
+        currentInteractable = closestProp;
+
+    }
+
+    //--------------------------------------------------
+
+    if(
+
+        currentInteractable
+
+    ){
+
+        showInteraction(
+
+            currentInteractable.label ??
+
+            'Interactuar'
+
+        );
+
+    }
+
+    else{
+
+        hideInteraction();
+
+    }
 
 }
 
@@ -155,7 +254,9 @@ export function tryInteraction(){
 
     if(
 
-        typeof currentInteractable.interact === 'function'
+        typeof currentInteractable.interact ===
+
+        'function'
 
     ){
 
@@ -166,14 +267,14 @@ export function tryInteraction(){
 }
 
 // ======================================================
-// GETTERS
-// ======================================================
 
 export function hasInteractionTarget(){
 
     return currentInteractable !== null;
 
 }
+
+// ======================================================
 
 export function getCurrentInteractable(){
 
