@@ -1,158 +1,143 @@
-import { runtimeState }
-from '../state/runtimeState.js';
+// ======================================================
+// INTERACTION MANAGER
+// Sistema genérico de interacción.
+// No conoce NPC, Props ni Misiones.
+// ======================================================
 
-import { gameState }
-from '../state/gameState.js';
+import { runtimeState } from '../state/runtimeState.js';
 
 import {
 
     showInteraction,
-
     hideInteraction
 
-}
-from './interactionUI.js';
+} from './interactionUI.js';
 
 import {
-
-    startDialogue,
 
     isDialogueRunning
 
-}
-from '../dialogue/dialogueManager.js';
+} from '../dialogue/dialogueManager.js';
 
 import {
 
-    findClosestNPC
+    getInteractables
 
-}
-from '../entities/npc/npcRegistry.js';
+} from '../gameplay/interaction/interactionRegistry.js';
 
-import {
+let currentInteractable = null;
 
-    pandaIntroDialogue
-
-}
-from '../dialogue/dialogues/pandaIntro.js';
-
-import {
-
-    altoBusyDialogue
-
-}
-from '../dialogue/dialogues/altoBusy.js';
-
-import {
-
-    telerinBusyDialogue
-
-}
-from '../dialogue/dialogues/telerinBusy.js';
-
-import {
-
-    teleronBusyDialogue
-
-}
-from '../dialogue/dialogues/teleronBusy.js';
-
-import {
-
-    setPandaIdle
-
-}
-from '../entities/npc/pandaNPC.js';
-
-
-
-let interactionTarget = null;
-
-
-
-// =====================================================
-// UPDATE INTERACTION
-// =====================================================
+// ======================================================
+// UPDATE
+// ======================================================
 
 export function updateInteractionSystem(){
 
-    if(
+    currentInteractable = null;
 
-        isDialogueRunning()
+    //--------------------------------------------------
+    // Si hay un diálogo abierto no buscamos interacción
+    //--------------------------------------------------
 
-    ){
+    if(isDialogueRunning()){
 
         hideInteraction();
-
-        interactionTarget = null;
 
         return;
 
     }
 
-    const player =
+    //--------------------------------------------------
+    // Jugador
+    //--------------------------------------------------
 
-        runtimeState.player;
+    const player = runtimeState.player;
 
-    if(
-
-        !player
-
-    ){
+    if(!player){
 
         hideInteraction();
-
-        interactionTarget = null;
 
         return;
 
     }
 
-    const npc =
+    //--------------------------------------------------
+    // Buscar el interactuable más cercano
+    //--------------------------------------------------
 
-        findClosestNPC(
+    const interactables = getInteractables();
 
-            player.position
+    let closestDistance = Infinity;
+
+    for(const interactable of interactables){
+
+        if(!interactable.object){
+
+            continue;
+
+        }
+
+        if(interactable.object.visible === false){
+
+            continue;
+
+        }
+
+        const distance = player.position.distanceTo(
+
+            interactable.object.position
 
         );
 
-    if(
+        const radius = interactable.radius ?? 3;
 
-        !npc
+        if(
 
-    ){
+            distance <= radius &&
+
+            distance < closestDistance
+
+        ){
+
+            closestDistance = distance;
+
+            currentInteractable = interactable;
+
+        }
+
+    }
+
+    //--------------------------------------------------
+    // UI
+    //--------------------------------------------------
+
+    if(currentInteractable){
+
+        showInteraction('Hablar');
+
+    }
+
+    else{
 
         hideInteraction();
 
-        interactionTarget = null;
-
-        return;
-
     }
-
-    interactionTarget = npc;
-
-    showInteraction(
-
-        'Hablar'
-
-    );
 
 }
 
-
-
-// =====================================================
+// ======================================================
 // TRY INTERACTION
-// =====================================================
+// ======================================================
 
 export function tryInteraction(){
 
-    if(
+    if(!currentInteractable){
 
-        !interactionTarget
+        return;
 
-    ){
+    }
+
+    if(isDialogueRunning()){
 
         return;
 
@@ -160,110 +145,22 @@ export function tryInteraction(){
 
     if(
 
-        isDialogueRunning()
+        typeof currentInteractable.interact === 'function'
 
     ){
 
-        return;
-
-    }
-
-    switch(
-
-        interactionTarget.id
-
-    ){
-
-        case 'panda':
-
-            if(
-
-                !gameState.flags.metPanda
-
-            ){
-
-                startDialogue(
-
-                    pandaIntroDialogue
-
-                );
-
-                gameState.flags.metPanda =
-
-                    true;
-
-                setPandaIdle();
-
-            }
-
-            break;
-
-        case 'alto':
-
-            if(
-
-                !gameState.flags.metPanda
-
-            ){
-
-                startDialogue(
-
-                    altoBusyDialogue
-
-                );
-
-            }
-
-            break;
-
-        case 'telerin':
-
-            if(
-
-                !gameState.flags.metPanda
-
-            ){
-
-                startDialogue(
-
-                    telerinBusyDialogue
-
-                );
-
-            }
-
-            break;
-
-        case 'teleron':
-
-            if(
-
-                !gameState.flags.metPanda
-
-            ){
-
-                startDialogue(
-
-                    teleronBusyDialogue
-
-                );
-
-            }
-
-            break;
+        currentInteractable.interact();
 
     }
 
 }
 
-
-
-// =====================================================
-// HAS TARGET
-// =====================================================
+// ======================================================
+// MOBILE
+// ======================================================
 
 export function hasInteractionTarget(){
 
-    return interactionTarget !== null;
+    return currentInteractable !== null;
 
 }
