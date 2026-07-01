@@ -38,6 +38,15 @@ import {
 
 }
 from './systems/timeSystem.js';
+
+import {
+
+    updateGameplay
+
+}
+
+from './gameplay/gameplayManager.js';
+
 import {
 
     createPandaReminder,
@@ -361,6 +370,8 @@ function startGame(){
         updateFunctions:[
 
             updatePlayer,
+
+			updateGameplay,
 
             updateInteractionSystem,
 
