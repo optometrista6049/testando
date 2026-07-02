@@ -1,202 +1,33 @@
-import { dialogueState }
+import {
+    dialogueState
+}
 from './dialogueState.js';
 
-// ======================================================
-// ELEMENTS
-// ======================================================
+import {
+
+    finishDialogue
+
+}
+
+from './dialogueManager.js';
 
 let root = null;
+
+let header = null;
+
+let portraitContainer = null;
 
 let portraitImage = null;
 
 let speakerLabel = null;
 
-let textContainer = null;
+let body = null;
 
 let textLabel = null;
 
+let footer = null;
+
 let continueButton = null;
-
-// ======================================================
-// RESPONSIVE HELPERS
-// ======================================================
-
-function clamp(min,value,max){
-
-    return Math.max(
-
-        min,
-
-        Math.min(
-
-            value,
-
-            max
-
-        )
-
-    );
-
-}
-
-function getLayout(){
-
-    const width =
-        window.innerWidth;
-
-    const height =
-        window.innerHeight;
-
-    const portrait =
-        clamp(
-
-            42,
-
-            width*0.085,
-
-            140
-
-        );
-
-    const padding =
-        clamp(
-
-            8,
-
-            width*0.018,
-
-            20
-
-        );
-
-    const gap =
-        clamp(
-
-            8,
-
-            width*0.018,
-
-            20
-
-        );
-
-    const speaker =
-        clamp(
-
-            18,
-
-            width*0.018,
-
-            28
-
-        );
-
-    const text =
-        clamp(
-
-            15,
-
-            width*0.015,
-
-            22
-
-        );
-
-    const button =
-        clamp(
-
-            14,
-
-            width*0.014,
-
-            18
-
-        );
-
-    const buttonPaddingY =
-        clamp(
-
-            6,
-
-            width*0.008,
-
-            12
-
-        );
-
-    const buttonPaddingX =
-        clamp(
-
-            12,
-
-            width*0.018,
-
-            20
-
-        );
-
-    const dialogWidth =
-        clamp(
-
-            320,
-
-            width*0.94,
-
-            1000
-
-        );
-
-    const textHeight =
-        clamp(
-
-            90,
-
-            height*0.18,
-
-            220
-
-        );
-
-    const bottom =
-        clamp(
-
-            8,
-
-            height*0.02,
-
-            24
-
-        );
-
-    return{
-
-        dialogWidth,
-
-        dialogMaxWidth:1000,
-
-        bottom,
-
-        padding,
-
-        portrait,
-
-        gap,
-
-        speaker,
-
-        text,
-
-        button,
-
-        buttonPaddingY,
-
-        buttonPaddingX,
-
-        textHeight
-
-    };
-
-}
 
 // ======================================================
 // CREATE UI
@@ -204,158 +35,75 @@ function getLayout(){
 
 export function createDialogueUI(){
 
-    const layout =
-        getLayout();
+    // ------------------------------------------
+    // ROOT
+    // ------------------------------------------
 
     root =
         document.createElement(
-
             'div'
-
         );
 
-    Object.assign(
+    root.className =
+        'dialogue';
 
-        root.style,
+    // ------------------------------------------
+    // HEADER
+    // ------------------------------------------
 
-        {
-
-            display:'none',
-
-            position:'fixed',
-
-            left:'50%',
-
-            bottom:
-
-                layout.bottom+'px',
-
-            transform:
-
-                'translateX(-50%)',
-
-            width:
-
-                layout.dialogWidth+'px',
-
-            maxWidth:
-
-                layout.dialogMaxWidth+'px',
-
-            background:
-
-                'rgba(15,15,15,0.88)',
-
-            border:
-
-                '2px solid #d6b06a',
-
-            borderRadius:'20px',
-
-            padding:
-
-                layout.padding+'px',
-
-            color:'white',
-
-            zIndex:'15000',
-
-            boxSizing:'border-box'
-
-        }
-
-    );
-
-    const header =
+    header =
         document.createElement(
-
             'div'
-
         );
 
-    Object.assign(
+    header.className =
+        'dialogue-header';
 
-        header.style,
+    // ------------------------------------------
+    // PORTRAIT CONTAINER
+    // ------------------------------------------
 
-        {
+    portraitContainer =
+        document.createElement(
+            'div'
+        );
 
-            display:'flex',
+    portraitContainer.className =
+        'dialogue-portrait-container';
 
-            alignItems:'center',
-
-            gap:
-
-                layout.gap+'px',
-
-            marginBottom:'8px'
-
-        }
-
-    );
+    // ------------------------------------------
+    // PORTRAIT
+    // ------------------------------------------
 
     portraitImage =
         document.createElement(
-
             'img'
-
         );
 
-    Object.assign(
+    portraitImage.className =
+        'dialogue-portrait';
 
-        portraitImage.style,
+    portraitContainer.appendChild(
 
-        {
-
-            width:
-
-                layout.portrait+'px',
-
-            height:
-
-                layout.portrait+'px',
-
-            objectFit:'cover',
-
-            borderRadius:'12px',
-
-            border:
-
-                '2px solid #d6b06a',
-
-            flexShrink:'0'
-
-        }
+        portraitImage
 
     );
+
+    // ------------------------------------------
+    // SPEAKER
+    // ------------------------------------------
 
     speakerLabel =
         document.createElement(
-
             'h3'
-
         );
 
-    Object.assign(
-
-        speakerLabel.style,
-
-        {
-
-            margin:'0',
-
-            color:'#f2d08a',
-
-            fontSize:
-
-                layout.speaker+'px'
-
-        }
-
-    );
+    speakerLabel.className =
+        'dialogue-speaker';
 
     header.appendChild(
 
-        portraitImage
+        portraitContainer
 
     );
 
@@ -365,130 +113,75 @@ export function createDialogueUI(){
 
     );
 
-    textContainer =
+    // ------------------------------------------
+    // BODY
+    // ------------------------------------------
+
+    body =
         document.createElement(
-
             'div'
-
         );
-		
-		    Object.assign(
 
-        textContainer.style,
+    body.className =
+        'dialogue-body';
 
-        {
-
-            maxHeight:
-
-                layout.textHeight+'px',
-
-            overflowY:'auto',
-
-            overflowX:'hidden',
-
-            scrollbarWidth:'thin',
-
-            borderTop:
-
-                '1px solid rgba(255,255,255,0.15)',
-
-            borderBottom:
-
-                '1px solid rgba(255,255,255,0.15)',
-
-            padding:'6px 0',
-
-            marginBottom:'8px'
-
-        }
-
-    );
+    // ------------------------------------------
+    // TEXT
+    // ------------------------------------------
 
     textLabel =
-
         document.createElement(
-
-            'p'
-
+            'div'
         );
 
-    Object.assign(
+    textLabel.className =
+        'dialogue-text';
 
-        textLabel.style,
-
-        {
-
-            margin:'0',
-
-            lineHeight:'1.45',
-
-            whiteSpace:'pre-line',
-
-            fontSize:
-
-                layout.text+'px'
-
-        }
-
-    );
-
-    textContainer.appendChild(
+    body.appendChild(
 
         textLabel
 
     );
 
-    continueButton =
+    // ------------------------------------------
+    // FOOTER
+    // ------------------------------------------
 
+    footer =
         document.createElement(
-
-            'button'
-
+            'div'
         );
 
-    continueButton.innerText =
+    footer.className =
+        'dialogue-footer';
 
+    // ------------------------------------------
+    // BUTTON
+    // ------------------------------------------
+
+    continueButton =
+        document.createElement(
+            'button'
+        );
+
+    continueButton.className =
+        'dialogue-button';
+
+    continueButton.innerText =
         'Continuar';
 
-    Object.assign(
+    continueButton.onclick =
+        nextDialoguePage;
 
-        continueButton.style,
+    footer.appendChild(
 
-        {
-
-            padding:
-
-                layout.buttonPaddingY+
-
-                'px '+
-
-                layout.buttonPaddingX+
-
-                'px',
-
-            fontSize:
-
-                layout.button+'px',
-
-            cursor:'pointer',
-
-            borderRadius:'10px',
-
-            border:'none',
-
-            background:'#d6b06a',
-
-            color:'#222',
-
-            fontWeight:'bold'
-
-        }
+        continueButton
 
     );
 
-    continueButton.onclick =
-
-        nextDialoguePage;
+    // ------------------------------------------
+    // APPEND ROOT
+    // ------------------------------------------
 
     root.appendChild(
 
@@ -498,13 +191,13 @@ export function createDialogueUI(){
 
     root.appendChild(
 
-        textContainer
+        body
 
     );
 
     root.appendChild(
 
-        continueButton
+        footer
 
     );
 
@@ -514,73 +207,8 @@ export function createDialogueUI(){
 
     );
 
-    // =====================================
-    // RESPONSIVE
-    // =====================================
-
-    window.addEventListener(
-
-        'resize',
-
-        ()=>{
-
-            const layout =
-
-                getLayout();
-
-            root.style.bottom =
-
-                layout.bottom+'px';
-
-            root.style.width =
-
-                layout.dialogWidth+'px';
-
-            root.style.maxWidth =
-
-                layout.dialogMaxWidth+'px';
-
-            root.style.padding =
-
-                layout.padding+'px';
-
-            portraitImage.style.width =
-
-                layout.portrait+'px';
-
-            portraitImage.style.height =
-
-                layout.portrait+'px';
-
-            speakerLabel.style.fontSize =
-
-                layout.speaker+'px';
-
-            textContainer.style.maxHeight =
-
-                layout.textHeight+'px';
-
-            textLabel.style.fontSize =
-
-                layout.text+'px';
-
-            continueButton.style.fontSize =
-
-                layout.button+'px';
-
-            continueButton.style.padding =
-
-                layout.buttonPaddingY+
-
-                'px '+
-
-                layout.buttonPaddingX+
-
-                'px';
-
-        }
-
-    );
+    root.style.display =
+        'none';
 
 }
 
@@ -588,27 +216,23 @@ export function createDialogueUI(){
 // SHOW DIALOGUE
 // ======================================================
 
-export function showDialogue(dialogue){
+export function showDialogue(
+
+    dialogue
+
+){
 
     dialogueState.active =
-
         true;
 
     dialogueState.currentDialogue =
-
         dialogue;
 
     dialogueState.currentPage =
-
         0;
 
     root.style.display =
-
-        'block';
-
-    textContainer.scrollTop =
-
-        0;
+        'flex';
 
     updateDialogue();
 
@@ -624,39 +248,55 @@ function updateDialogue(){
 
         dialogueState.currentDialogue;
 
-    if(!dialogue){
+    if(
+
+        !dialogue
+
+    ){
 
         return;
 
     }
 
+    // ------------------------------------------
+    // SPEAKER
+    // ------------------------------------------
+
     speakerLabel.innerText =
 
-        dialogue.speaker ?? '';
+        dialogue.speaker;
 
-    if(dialogue.portrait){
+    // ------------------------------------------
+    // PORTRAIT
+    // ------------------------------------------
+
+    if(
+
+        dialogue.portrait
+
+    ){
 
         portraitImage.src =
 
             dialogue.portrait;
 
-        portraitImage.style.display =
+        portraitContainer.style.display =
 
-            'block';
+            '';
 
     }
 
     else{
 
-        portraitImage.style.display =
+        portraitContainer.style.display =
 
             'none';
 
     }
 
-    textContainer.scrollTop =
-
-        0;
+    // ------------------------------------------
+    // TEXT
+    // ------------------------------------------
 
     textLabel.innerText =
 
@@ -665,6 +305,10 @@ function updateDialogue(){
             dialogueState.currentPage
 
         ];
+
+    textLabel.scrollTop =
+
+        0;
 
 }
 
@@ -678,7 +322,11 @@ function nextDialoguePage(){
 
         dialogueState.currentDialogue;
 
-    if(!dialogue){
+    if(
+
+        !dialogue
+
+    ){
 
         return;
 
@@ -694,7 +342,7 @@ function nextDialoguePage(){
 
     ){
 
-        closeDialogue();
+        finishDialogue();
 
         return;
 
@@ -722,34 +370,14 @@ export function closeDialogue(){
 
         0;
 
-    if(
+    root.style.display =
 
-        textContainer
-
-    ){
-
-        textContainer.scrollTop =
-
-            0;
-
-    }
-
-    if(
-
-        root
-
-    ){
-
-        root.style.display =
-
-            'none';
-
-    }
+        'none';
 
 }
 
 // ======================================================
-// GETTERS
+// STATUS
 // ======================================================
 
 export function isDialogueOpen(){
@@ -766,9 +394,7 @@ export function refreshDialogue(){
 
     if(
 
-        !dialogueState.active ||
-
-        !root
+        !dialogueState.active
 
     ){
 
@@ -776,58 +402,16 @@ export function refreshDialogue(){
 
     }
 
-    const layout =
+    if(
 
-        getLayout();
+        !dialogueState.currentDialogue
 
-    root.style.bottom =
+    ){
 
-        layout.bottom+'px';
+        return;
 
-    root.style.width =
+    }
 
-        layout.dialogWidth+'px';
-
-    root.style.maxWidth =
-
-        layout.dialogMaxWidth+'px';
-
-    root.style.padding =
-
-        layout.padding+'px';
-
-    portraitImage.style.width =
-
-        layout.portrait+'px';
-
-    portraitImage.style.height =
-
-        layout.portrait+'px';
-
-    speakerLabel.style.fontSize =
-
-        layout.speaker+'px';
-
-    textContainer.style.maxHeight =
-
-        layout.textHeight+'px';
-
-    textLabel.style.fontSize =
-
-        layout.text+'px';
-
-    continueButton.style.fontSize =
-
-        layout.button+'px';
-
-    continueButton.style.padding =
-
-        layout.buttonPaddingY+
-
-        'px '+
-
-        layout.buttonPaddingX+
-
-        'px';
+    updateDialogue();
 
 }
