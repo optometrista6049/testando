@@ -252,11 +252,11 @@ DIALOGUE
 
     width:min(94vw,1000px);
 
-    height:28vh;
+    max-height:30vh;
 
-    min-height:170px;
+    min-height:140px;
 
-    max-height:300px;
+    height:auto;
 
     display:none;
 
@@ -264,7 +264,7 @@ DIALOGUE
 
     box-sizing:border-box;
 
-    padding:1.2vh;
+    padding:1vh;
 
     border-radius:18px;
 
@@ -290,11 +290,11 @@ HEADER
 
     align-items:center;
 
-    gap:1.2vw;
+    gap:1vw;
 
-    flex:0 0 26%;
+    flex:0 0 auto;
 
-    overflow:hidden;
+    margin-bottom:.8vh;
 
 }
 
@@ -372,11 +372,11 @@ BODY
 
     flex:1;
 
-    overflow:hidden;
-
     display:flex;
 
     flex-direction:column;
+
+    overflow:hidden;
 
 }
 
@@ -408,9 +408,7 @@ TEXT
 
     );
 
-    padding-top:.8vh;
-
-    padding-bottom:.8vh;
+    padding:.8vh 0;
 
     border-top:
 
@@ -512,31 +510,25 @@ RESPONSIVE ADJUSTMENTS
 
     .dialogue{
 
-        height:24vh;
+        max-height:30vh;
 
-        min-height:145px;
+        min-height:120px;
 
         bottom:1vh;
 
-        padding:.8vh;
-
-    }
-
-    .dialogue-header{
-
-        gap:.8vw;
+        padding:.7vh;
 
     }
 
     .dialogue-portrait-container{
 
-        width:6.5vh;
+        width:5.8vh;
 
-        height:6.5vh;
+        height:5.8vh;
 
-        min-width:36px;
+        min-width:34px;
 
-        min-height:36px;
+        min-height:34px;
 
     }
 
@@ -544,23 +536,13 @@ RESPONSIVE ADJUSTMENTS
 
         font-size:clamp(
 
-            13px,
+            12px,
 
-            1.6vh,
+            1.5vh,
 
-            18px
+            17px
 
         );
-
-    }
-
-    .dialogue-button{
-
-        padding:
-
-            5px
-
-            12px;
 
     }
 
