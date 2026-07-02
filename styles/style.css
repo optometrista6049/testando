@@ -1,3 +1,7 @@
+/* =====================================================
+GENERAL
+===================================================== */
+
 html,
 body{
 
@@ -26,8 +30,12 @@ canvas{
 }
 
 /* =====================================================
-BOOT SCREEN
+BOOT
 ===================================================== */
+
+/* -------------------------
+BOOT SCREEN
+------------------------- */
 
 #bootScreen{
 
@@ -47,9 +55,9 @@ BOOT SCREEN
 
 }
 
-/* =====================================================
+/* -------------------------
 BACKGROUND IMAGE
-===================================================== */
+------------------------- */
 
 #bootBackground{
 
@@ -72,9 +80,9 @@ BACKGROUND IMAGE
 
 }
 
-/* =====================================================
+/* -------------------------
 DARK OVERLAY
-===================================================== */
+------------------------- */
 
 #bootOverlay{
 
@@ -86,14 +94,14 @@ DARK OVERLAY
     rgba(0,0,0,0.45);
 
     z-index:1;
-	
-	pointer-events:none;
+
+    pointer-events:none;
 
 }
 
-/* =====================================================
+/* -------------------------
 BOOT PANEL
-===================================================== */
+------------------------- */
 
 #bootPanel{
 
@@ -111,9 +119,9 @@ BOOT PANEL
 
 }
 
-/* =====================================================
+/* -------------------------
 TITLE
-===================================================== */
+------------------------- */
 
 #bootPanel h1{
 
@@ -130,9 +138,9 @@ TITLE
 
 }
 
-/* =====================================================
+/* -------------------------
 TEXT
-===================================================== */
+------------------------- */
 
 .bootText{
 
@@ -153,9 +161,9 @@ TEXT
 
 }
 
-/* =====================================================
+/* -------------------------
 BUTTON
-===================================================== */
+------------------------- */
 
 #startButton{
 
@@ -224,22 +232,335 @@ ORIENTATION
 }
 
 /* =====================================================
-MOBILE
+GAME UI
 ===================================================== */
 
-@media(max-width:700px){
+/* -----------------------------------------------------
+DIALOGUE
+(Se añadirá en la siguiente entrega)
+----------------------------------------------------- */
 
-    #bootPanel{
+.dialogue{
 
-        padding:20px;
+    position:fixed;
+
+    left:50%;
+
+    bottom:2vh;
+
+    transform:translateX(-50%);
+
+    width:min(94vw,1000px);
+
+    height:28vh;
+
+    min-height:170px;
+
+    max-height:300px;
+
+    display:none;
+
+    flex-direction:column;
+
+    box-sizing:border-box;
+
+    padding:1.2vh;
+
+    border-radius:18px;
+
+    border:2px solid #d6b06a;
+
+    background:rgba(15,15,15,0.88);
+
+    backdrop-filter:blur(6px);
+
+    color:white;
+
+    z-index:15000;
+
+}
+
+/* -----------------------------------------------------
+HEADER
+----------------------------------------------------- */
+
+.dialogue-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:1.2vw;
+
+    flex:0 0 26%;
+
+    overflow:hidden;
+
+}
+
+/* -----------------------------------------------------
+PORTRAIT
+----------------------------------------------------- */
+
+.dialogue-portrait{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    border-radius:12px;
+
+    border:2px solid #d6b06a;
+
+}
+
+.dialogue-portrait-container{
+
+    flex:0 0 auto;
+
+    width:8vh;
+
+    height:8vh;
+
+    min-width:42px;
+
+    min-height:42px;
+
+    max-width:90px;
+
+    max-height:90px;
+
+}
+
+/* -----------------------------------------------------
+SPEAKER
+----------------------------------------------------- */
+
+.dialogue-speaker{
+
+    margin:0;
+
+    color:#f2d08a;
+
+    font-weight:bold;
+
+    font-size:clamp(
+
+        16px,
+
+        2.2vh,
+
+        28px
+
+    );
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+/* -----------------------------------------------------
+BODY
+----------------------------------------------------- */
+
+.dialogue-body{
+
+    flex:1;
+
+    overflow:hidden;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+/* -----------------------------------------------------
+TEXT
+----------------------------------------------------- */
+
+.dialogue-text{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
+
+    scrollbar-width:thin;
+
+    white-space:pre-line;
+
+    line-height:1.45;
+
+    font-size:clamp(
+
+        14px,
+
+        1.8vh,
+
+        22px
+
+    );
+
+    padding-top:.8vh;
+
+    padding-bottom:.8vh;
+
+    border-top:
+
+        1px solid rgba(255,255,255,.15);
+
+    border-bottom:
+
+        1px solid rgba(255,255,255,.15);
+
+}
+
+/* -----------------------------------------------------
+FOOTER
+----------------------------------------------------- */
+
+.dialogue-footer{
+
+    flex:0 0 auto;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    padding-top:1vh;
+
+}
+
+/* -----------------------------------------------------
+BUTTON
+----------------------------------------------------- */
+
+.dialogue-button{
+
+    cursor:pointer;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#d6b06a;
+
+    color:#222;
+
+    font-weight:bold;
+
+    font-size:clamp(
+
+        14px,
+
+        1.8vh,
+
+        18px
+
+    );
+
+    padding:
+
+        clamp(
+
+            6px,
+
+            .8vh,
+
+            12px
+
+        )
+
+        clamp(
+
+            12px,
+
+            1.6vw,
+
+            22px
+
+        );
+
+    transition:.15s;
+
+}
+
+.dialogue-button:hover{
+
+    transform:scale(1.03);
+
+}
+
+.dialogue-button:active{
+
+    transform:scale(.98);
+
+}
+
+/* =====================================================
+RESPONSIVE ADJUSTMENTS
+===================================================== */
+
+@media (max-height:520px){
+
+    .dialogue{
+
+        height:24vh;
+
+        min-height:145px;
+
+        bottom:1vh;
+
+        padding:.8vh;
 
     }
 
-    #startButton{
+    .dialogue-header{
 
-        width:100%;
+        gap:.8vw;
 
-        max-width:320px;
+    }
+
+    .dialogue-portrait-container{
+
+        width:6.5vh;
+
+        height:6.5vh;
+
+        min-width:36px;
+
+        min-height:36px;
+
+    }
+
+    .dialogue-text{
+
+        font-size:clamp(
+
+            13px,
+
+            1.6vh,
+
+            18px
+
+        );
+
+    }
+
+    .dialogue-button{
+
+        padding:
+
+            5px
+
+            12px;
 
     }
 
