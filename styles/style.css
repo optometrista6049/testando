@@ -235,10 +235,9 @@ ORIENTATION
 GAME UI
 ===================================================== */
 
-/* -----------------------------------------------------
-DIALOGUE
-(Se añadirá en la siguiente entrega)
------------------------------------------------------ */
+/* =====================================================
+   DIALOGUE SYSTEM
+===================================================== */
 
 .dialogue{
 
@@ -250,27 +249,23 @@ DIALOGUE
 
     transform:translateX(-50%);
 
-    width:min(94vw,1000px);
-
-    max-height:30vh;
-
-    min-height:140px;
-
-    height:auto;
-
     display:none;
 
     flex-direction:column;
 
     box-sizing:border-box;
 
-    padding:1vh;
+    width:min(94vw,1000px);
+
+    max-height:25vh;
+
+    padding:.7rem;
 
     border-radius:18px;
 
     border:2px solid #d6b06a;
 
-    background:rgba(15,15,15,0.88);
+    background:rgba(15,15,15,.88);
 
     backdrop-filter:blur(6px);
 
@@ -280,9 +275,9 @@ DIALOGUE
 
 }
 
-/* -----------------------------------------------------
-HEADER
------------------------------------------------------ */
+/* =====================================================
+   HEADER
+===================================================== */
 
 .dialogue-header{
 
@@ -290,17 +285,47 @@ HEADER
 
     align-items:center;
 
-    gap:1vw;
+    gap:.8rem;
 
-    flex:0 0 auto;
-
-    margin-bottom:.8vh;
+    margin-bottom:.5rem;
 
 }
 
-/* -----------------------------------------------------
-PORTRAIT
------------------------------------------------------ */
+/* =====================================================
+   PORTRAIT
+===================================================== */
+
+.dialogue-portrait-container{
+
+    flex:0 0 auto;
+
+    width:clamp(
+
+        36px,
+
+        5vh,
+
+        70px
+
+    );
+
+    height:clamp(
+
+        36px,
+
+        5vh,
+
+        70px
+
+    );
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    border:2px solid #d6b06a;
+
+}
 
 .dialogue-portrait{
 
@@ -310,33 +335,13 @@ PORTRAIT
 
     object-fit:cover;
 
-    border-radius:12px;
-
-    border:2px solid #d6b06a;
+    display:block;
 
 }
 
-.dialogue-portrait-container{
-
-    flex:0 0 auto;
-
-    width:8vh;
-
-    height:8vh;
-
-    min-width:42px;
-
-    min-height:42px;
-
-    max-width:90px;
-
-    max-height:90px;
-
-}
-
-/* -----------------------------------------------------
-SPEAKER
------------------------------------------------------ */
+/* =====================================================
+   SPEAKER
+===================================================== */
 
 .dialogue-speaker{
 
@@ -348,29 +353,21 @@ SPEAKER
 
     font-size:clamp(
 
-        16px,
+        1rem,
 
-        2.2vh,
+        2vh,
 
-        28px
+        1.6rem
 
     );
 
-    white-space:nowrap;
-
-    overflow:hidden;
-
-    text-overflow:ellipsis;
-
 }
 
-/* -----------------------------------------------------
-BODY
------------------------------------------------------ */
+/* =====================================================
+   BODY
+===================================================== */
 
 .dialogue-body{
-
-    flex:1;
 
     display:flex;
 
@@ -380,13 +377,19 @@ BODY
 
 }
 
-/* -----------------------------------------------------
-TEXT
------------------------------------------------------ */
+/* =====================================================
+   TEXT
+===================================================== */
 
 .dialogue-text{
 
-    flex:1;
+    margin:0;
+
+    padding:.45rem 0;
+
+    line-height:1.45;
+
+    white-space:pre-line;
 
     overflow-y:auto;
 
@@ -394,55 +397,139 @@ TEXT
 
     scrollbar-width:thin;
 
-    white-space:pre-line;
-
-    line-height:1.45;
+    max-height:14vh;
 
     font-size:clamp(
 
-        14px,
+        .9rem,
 
         1.8vh,
 
-        22px
+        1.35rem
 
     );
 
-    padding:.8vh 0;
-
     border-top:
 
-        1px solid rgba(255,255,255,.15);
+        1px solid rgba(
+
+            255,
+
+            255,
+
+            255,
+
+            .15
+
+        );
 
     border-bottom:
 
-        1px solid rgba(255,255,255,.15);
+        1px solid rgba(
+
+            255,
+
+            255,
+
+            255,
+
+            .15
+
+        );
 
 }
 
-/* -----------------------------------------------------
-FOOTER
------------------------------------------------------ */
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+
+.dialogue-text::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+.dialogue-text::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+.dialogue-text::-webkit-scrollbar-thumb{
+
+    background:rgba(
+
+        214,
+
+        176,
+
+        106,
+
+        .65
+
+    );
+
+    border-radius:20px;
+
+}
+
+.dialogue-text::-webkit-scrollbar-thumb:hover{
+
+    background:rgba(
+
+        214,
+
+        176,
+
+        106,
+
+        .95
+
+    );
+
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
 
 .dialogue-footer{
-
-    flex:0 0 auto;
 
     display:flex;
 
     justify-content:flex-end;
 
-    padding-top:1vh;
+    margin-top:.6rem;
 
 }
 
-/* -----------------------------------------------------
-BUTTON
------------------------------------------------------ */
+/* =====================================================
+   BUTTON
+===================================================== */
 
 .dialogue-button{
 
-    cursor:pointer;
+    padding:
+
+        clamp(
+
+            .35rem,
+
+            .7vh,
+
+            .7rem
+
+        )
+
+        clamp(
+
+            .8rem,
+
+            1.5vw,
+
+            1.4rem
+
+        );
 
     border:none;
 
@@ -450,47 +537,33 @@ BUTTON
 
     background:#d6b06a;
 
-    color:#222;
+    color:#1b1b1b;
 
     font-weight:bold;
 
+    cursor:pointer;
+
+    transition:
+
+        background .2s,
+
+        transform .2s;
+
     font-size:clamp(
 
-        14px,
+        .85rem,
 
-        1.8vh,
+        1.6vh,
 
-        18px
+        1rem
 
     );
-
-    padding:
-
-        clamp(
-
-            6px,
-
-            .8vh,
-
-            12px
-
-        )
-
-        clamp(
-
-            12px,
-
-            1.6vw,
-
-            22px
-
-        );
-
-    transition:.15s;
 
 }
 
 .dialogue-button:hover{
+
+    background:#e8c987;
 
     transform:scale(1.03);
 
@@ -501,6 +574,38 @@ BUTTON
     transform:scale(.98);
 
 }
+
+/* =====================================================
+   SMALL HEIGHT SCREENS
+===================================================== */
+
+@media (max-height:520px){
+
+    .dialogue{
+
+        bottom:1vh;
+
+        padding:.55rem;
+
+        max-height:25vh;
+
+    }
+
+    .dialogue-header{
+
+        margin-bottom:.35rem;
+
+    }
+
+    .dialogue-text{
+
+        max-height:13vh;
+
+    }
+
+}
+
+
 
 /* =====================================================
 RESPONSIVE ADJUSTMENTS
