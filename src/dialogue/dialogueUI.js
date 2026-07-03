@@ -3,13 +3,7 @@ import {
 }
 from './dialogueState.js';
 
-import {
 
-    finishDialogue
-
-}
-
-from './dialogueManager.js';
 
 let root = null;
 
@@ -342,7 +336,7 @@ function nextDialoguePage(){
 
     ){
 
-        finishDialogue();
+        closeDialogue();
 
         return;
 
@@ -415,3 +409,4 @@ export function refreshDialogue(){
     updateDialogue();
 
 }
+
