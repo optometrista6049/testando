@@ -655,7 +655,6 @@ RESPONSIVE ADJUSTMENTS
 /* =======================================================
    REGISTRO
 ======================================================= */
-
 #registryBase{
 
     position:fixed;
@@ -666,32 +665,74 @@ RESPONSIVE ADJUSTMENTS
 
     transform:translateX(-50%);
 
-    width:clamp(110px,14vw,180px);
+    width:clamp(95px,12vw,185px);
 
-    height:24px;
+    height:22px;
 
     z-index:998;
 
     pointer-events:none;
 
-    border-radius:14px 14px 0 0;
+    border-radius:16px 16px 0 0;
 
     background:
+
         linear-gradient(
-            to bottom,
-            rgba(92,84,69,.96),
-            rgba(46,42,35,.98)
+            180deg,
+            rgba(132,120,98,.95) 0%,
+            rgba(88,78,62,.98) 45%,
+            rgba(48,43,37,.98) 100%
         );
 
-    border-top:1px solid rgba(255,214,145,.22);
+    border-top:1px solid rgba(255,220,160,.28);
+
+    border-left:1px solid rgba(255,220,160,.10);
+
+    border-right:1px solid rgba(255,220,160,.10);
 
     box-shadow:
-        0 -3px 10px rgba(0,0,0,.45),
-        inset 0 1px 1px rgba(255,255,255,.08);
+
+        inset 0 2px 2px rgba(255,255,255,.10),
+
+        inset 0 -2px 4px rgba(0,0,0,.45),
+
+        0 -4px 10px rgba(0,0,0,.40);
+
+    overflow:visible;
 
 }
 
 #registryBase::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    opacity:.18;
+
+    background:
+
+        repeating-linear-gradient(
+
+            90deg,
+
+            rgba(255,255,255,.10) 0px,
+
+            rgba(255,255,255,0) 2px,
+
+            rgba(0,0,0,.08) 4px,
+
+            rgba(0,0,0,0) 6px
+
+        );
+
+    border-radius:inherit;
+
+}
+
+#registryBase::after{
 
     content:"";
 
@@ -703,20 +744,25 @@ RESPONSIVE ADJUSTMENTS
 
     transform:translateX(-50%);
 
-    width:62px;
+    width:78%;
 
-    height:10px;
-
-    border-radius:50%;
+    height:16px;
 
     background:
+
         radial-gradient(
+
             ellipse at center,
-            rgba(220,220,220,.12),
-            rgba(220,220,220,0)
+
+            rgba(230,230,230,.22),
+
+            rgba(230,230,230,.10) 35%,
+
+            rgba(230,230,230,0) 72%
+
         );
 
-    filter:blur(5px);
+    filter:blur(8px);
 
     opacity:.55;
 
@@ -732,7 +778,7 @@ RESPONSIVE ADJUSTMENTS
 
     transform:translateX(-50%);
 
-    width:clamp(74px,6.2vw,126px);
+    width:clamp(68px,5.2vw,126px);
 
     height:auto;
 
