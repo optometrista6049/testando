@@ -1,1 +1,1 @@
-Aun no se como definirlo, en proceso
+Aun no se como definirlo, en proceso y
