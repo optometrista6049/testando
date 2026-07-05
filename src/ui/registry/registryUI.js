@@ -16,6 +16,8 @@ let registryRoot = null;
 
 let registryButton = null;
 
+let registryBase = null;
+
 export function createRegistryUI() {
 
     if (initialized) {
@@ -89,6 +91,12 @@ export function toggleRegistry() {
 }
 
 function createRegistryButton() {
+
+    registryBase = document.createElement("div");
+
+    registryBase.id = "registryBase";
+
+    document.body.appendChild(registryBase);
 
     registryButton = document.createElement("img");
 
