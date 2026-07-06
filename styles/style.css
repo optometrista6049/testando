@@ -839,6 +839,12 @@ VENTANA REGISTRO
 
 ======================================================*/
 
+#registry[hidden]{
+
+    display:none !important;
+
+}
+
 #registry{
 
     position:fixed;
@@ -853,9 +859,12 @@ VENTANA REGISTRO
 
     padding:28px;
 
-    background:rgba(16,14,11,.58);
+    background:rgba(46,31,20,.60);
 
-    backdrop-filter:blur(6px);
+    backdrop-filter:
+        blur(8px)
+        brightness(.92)
+        sepia(.18);
 
     border:1px solid rgba(205,170,110,.18);
 
