@@ -14,9 +14,11 @@ let isOpen = false;
 
 let registryRoot = null;
 
-let registryButton = null;
+let registryHeaderIcon = null;
 
 let registryBase = null;
+
+let registryButton = null;
 
 export function createRegistryUI() {
 
@@ -34,11 +36,23 @@ export function createRegistryUI() {
 
     registryRoot.hidden = true;
 
+    registryHeaderIcon = document.createElement("img");
+
+    registryHeaderIcon.id = "registryHeaderIcon";
+
+    registryHeaderIcon.src = "./assets/ui/register/registerButton.png";
+
+    registryHeaderIcon.alt = "Registro";
+
+    registryHeaderIcon.draggable = false;
+
+    registryRoot.appendChild(registryHeaderIcon);
+
     document.body.appendChild(registryRoot);
-	
-	createRegistryButton();
-	
-	registerEvents();
+
+    createRegistryButton();
+
+    registerEvents();
 
 }
 
