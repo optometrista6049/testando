@@ -37,6 +37,8 @@ export function createRegistryUI() {
     document.body.appendChild(registryRoot);
 	
 	createRegistryButton();
+	
+	registerEvents();
 
 }
 
@@ -56,7 +58,9 @@ export function openRegistry() {
 
     isOpen = true;
 
-    registryRoot.hidden = false;
+   registryRoot.hidden = false;
+
+console.log("Registro abierto");
 
 }
 
@@ -71,6 +75,8 @@ export function closeRegistry() {
     isOpen = false;
 
     registryRoot.hidden = true;
+
+console.log("Registro cerrado");
 
 }
 
@@ -109,5 +115,37 @@ function createRegistryButton() {
     registryButton.draggable = false;
 
     document.body.appendChild(registryButton);
+
+}
+
+function registerEvents() {
+
+    document.addEventListener("keydown", onKeyDown);
+
+    registryButton.addEventListener("click", onButtonClick);
+
+}
+
+function onKeyDown(event) {
+
+    if (event.repeat) {
+
+        return;
+
+    }
+
+    if (event.key !== "r" && event.key !== "R") {
+
+        return;
+
+    }
+
+    toggleRegistry();
+
+}
+
+function onButtonClick() {
+
+    toggleRegistry();
 
 }
