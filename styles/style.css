@@ -652,9 +652,11 @@ RESPONSIVE ADJUSTMENTS
     }
 
 }
+
 /* =======================================================
    REGISTRO
 ======================================================= */
+
 #registryBase{
 
     position:fixed;
@@ -665,7 +667,7 @@ RESPONSIVE ADJUSTMENTS
 
     transform:translateX(-50%);
 
-    width:clamp(86px,10.8vw,185px);
+   width:clamp(86px,10.8vw,185px);
 
     height:22px;
 
@@ -675,7 +677,7 @@ RESPONSIVE ADJUSTMENTS
 
     border-radius:16px 16px 0 0;
 
-    background:
+   background:
 
 linear-gradient(
     180deg,
@@ -828,5 +830,57 @@ linear-gradient(
     user-select:none;
 
     -webkit-user-drag:none;
+
+}
+
+/*======================================================
+
+VENTANA REGISTRO
+
+======================================================*/
+
+#registry{
+
+    position:fixed;
+
+    inset:4%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    padding:28px;
+
+    background:rgba(16,14,11,.58);
+
+    backdrop-filter:blur(6px);
+
+    border:1px solid rgba(205,170,110,.18);
+
+    border-radius:18px;
+
+    box-shadow:
+
+        0 0 24px rgba(0,0,0,.55),
+
+        inset 0 0 18px rgba(255,220,160,.04);
+
+    z-index:500;
+
+}
+
+#registryHeaderIcon{
+
+    width:clamp(110px,10vw,180px);
+
+    height:auto;
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+
+    margin-bottom:26px;
 
 }
