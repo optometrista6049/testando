@@ -1,1 +1,1 @@
-ire añadiendo segun se me ocurra
+ire añadiendo segun se me ocurra y veremos
