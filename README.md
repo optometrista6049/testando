@@ -1,1 +1,1 @@
-Aun no se como definirlo, en proceso y yavoy a pr
+ire añadiendo segun se me ocurra
