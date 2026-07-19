@@ -2203,17 +2203,39 @@ REGISTRY · RESPONSIVE MOBILE
 
     }
 
-    /*--------------------------------------
-    LOGOTIPO DEL REGISTRO
-    --------------------------------------*/
+  /*--------------------------------------
+CABECERA DEL REGISTRO
+--------------------------------------*/
 
-    #registryHeaderIcon{
+#registryHeader{
 
-        width:72px;
+    padding-top:6px;
 
-        margin-bottom:12px;
+    padding-bottom:6px;
 
-    }
+}
+
+#registryHeaderIcon{
+
+    width:56px;
+
+    margin-bottom:4px;
+
+}
+
+}
+
+/*--------------------------------------
+CONTENIDO DEL REGISTRO
+--------------------------------------*/
+
+#registryContent{
+
+    padding-top:8px;
+
+    padding-bottom:8px;
+
+    gap:10px;
 
 }
 
