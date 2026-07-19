@@ -2146,3 +2146,37 @@ FORZAR OCULTACIÓN DE MÓDULOS HIDDEN
     display:none !important;
 
 }
+
+/*=========================================================
+REGISTRY · RESPONSIVE MOBILE
+=========================================================*/
+
+@media (max-width:768px){
+
+    .registryTab{
+
+        min-width:0;
+
+        width:25%;
+
+        min-height:64px;
+
+        padding:8px;
+
+    }
+
+    .registryTab img{
+
+        width:28px;
+
+        height:28px;
+
+    }
+
+    .registryTab span{
+
+        font-size:0.75rem;
+
+    }
+
+}
