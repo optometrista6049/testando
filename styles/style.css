@@ -2153,6 +2153,10 @@ REGISTRY · RESPONSIVE MOBILE
 
 @media (max-width:1024px){
 
+    /*--------------------------------------
+    PESTAÑAS
+    --------------------------------------*/
+
     .registryTab{
 
         min-width:0;
@@ -2165,17 +2169,49 @@ REGISTRY · RESPONSIVE MOBILE
 
     }
 
-    .registryTab img{
+    /*--------------------------------------
+    OCULTAR ATAJOS DE TECLADO
+    --------------------------------------*/
 
-        width:28px;
+    .registryTabShortcut{
 
-        height:28px;
+        display:none;
 
     }
 
-    .registryTab span{
+    /*--------------------------------------
+    ICONO DE LA PESTAÑA
+    --------------------------------------*/
 
-        font-size:0.75rem;
+    .registryTabIcon{
+
+        width:2rem;
+
+        height:2rem;
+
+        margin-right:.25rem;
+
+    }
+
+    /*--------------------------------------
+    TEXTO DE LA PESTAÑA
+    --------------------------------------*/
+
+    .registryTabTitle{
+
+        font-size:.82rem;
+
+    }
+
+    /*--------------------------------------
+    LOGOTIPO DEL REGISTRO
+    --------------------------------------*/
+
+    #registryHeaderIcon{
+
+        width:72px;
+
+        margin-bottom:12px;
 
     }
 
