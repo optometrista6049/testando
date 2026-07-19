@@ -1,1 +1,1 @@
-ire añadiendo segun se me ocurra y veremos
+ire añadiendo segun se me ocurra y veremos que funcione
