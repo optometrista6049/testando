@@ -2181,30 +2181,3 @@ REGISTRY · RESPONSIVE MOBILE
 
 }
 
-/*=========================================================
-OCULTAR ATAJOS DE TECLADO EN MÓVIL
-=========================================================*/
-
-.registryTabKey{
-
-    display:none;
-
-}
-
-/*=========================================================
-LOGOTIPO DEL REGISTRO
-=========================================================*/
-
-#registryButton{
-
-    width:120px;
-
-}
-
-#registryButton img{
-
-    width:100%;
-
-    height:auto;
-
-}
