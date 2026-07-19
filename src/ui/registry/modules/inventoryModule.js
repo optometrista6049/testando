@@ -100,7 +100,7 @@ function buildSlots(){
 }
 
 /*========================================================
-CREAR 30 CASILLAS
+CREAR 20 CASILLAS
 ========================================================*/
 
 function createInventoryCells(){
@@ -109,7 +109,7 @@ function createInventoryCells(){
 
         let i = 0;
 
-        i < 30;
+        i < 20;
 
         i++
 
