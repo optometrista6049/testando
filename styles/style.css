@@ -1257,7 +1257,7 @@ GRID
 
     grid-template-columns:repeat(5,1fr);
 
-    grid-template-rows:repeat(6,1fr);
+    grid-template-rows:repeat(4,1fr);
 
     gap:clamp(4px,0.45vw,10px);
 
