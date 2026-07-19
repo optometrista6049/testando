@@ -1154,7 +1154,7 @@ CONTENIDO REGISTRO
     flex:1;
 
     width:100%;
-
+	
 	min-height:0;
 
     border-radius:14px;
@@ -2159,17 +2159,19 @@ REGISTRY · RESPONSIVE MOBILE
     PESTAÑAS
     --------------------------------------*/
 
-    .registryTab{
+   .registryTab{
 
-        min-width:0;
+    min-width:0;
 
-        width:25%;
+    width:25%;
 
-        min-height:64px;
+    min-height:46px;
 
-        padding:8px;
+    padding:4px 6px;
 
-    }
+    border-radius:10px;
+
+}
 
     /*--------------------------------------
     OCULTAR ATAJOS DE TECLADO
@@ -2187,13 +2189,19 @@ REGISTRY · RESPONSIVE MOBILE
 
     .registryTabIcon{
 
-        width:2rem;
+    width:1.6rem;
 
-        height:2rem;
+    height:1.6rem;
 
-        margin-right:.25rem;
+    margin-right:.25rem;
 
-    }
+}
+
+.registryTabTitle{
+
+    font-size:.75rem;
+
+}
 
     /*--------------------------------------
     TEXTO DE LA PESTAÑA
@@ -2205,7 +2213,7 @@ REGISTRY · RESPONSIVE MOBILE
 
     }
 
-  /*--------------------------------------
+   /*--------------------------------------
 CABECERA DEL REGISTRO
 --------------------------------------*/
 
@@ -2217,11 +2225,19 @@ CABECERA DEL REGISTRO
 
 }
 
+/*--------------------------------------
+CABECERA
+--------------------------------------*/
+
+#registryHeader{
+
+    padding:4px 0;
+
+}
+
 #registryHeaderIcon{
 
-    width:56px;
-
-    margin-bottom:4px;
+    display:none;
 
 }
 
@@ -2238,6 +2254,16 @@ CONTENIDO DEL REGISTRO
     padding-bottom:8px;
 
     gap:10px;
+
+}
+
+/*--------------------------------------
+BARRA DE ATAJOS (NO NECESARIA EN MÓVIL)
+--------------------------------------*/
+
+#registryHelp{
+
+    display:none;
 
 }
 
