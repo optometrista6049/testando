@@ -2267,3 +2267,37 @@ BARRA DE ATAJOS (NO NECESARIA EN MÓVIL)
 
 }
 
+/*=====================================================*/
+/* INVENTARIO · AJUSTE PANEL DERECHO MÓVIL */
+/*=====================================================*/
+
+#inventoryPreview::before{
+
+    width:clamp(72px,16vw,110px);
+
+    margin:4px auto 6px;
+
+}
+
+#inventoryTitle{
+
+    margin-top:4px;
+
+    margin-bottom:6px;
+
+    font-size:0.92rem;
+
+    line-height:1.15;
+
+}
+
+#inventoryDescription{
+
+    font-size:0.82rem;
+
+    line-height:1.25;
+
+    overflow-y:auto;
+
+}
+
