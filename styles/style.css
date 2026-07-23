@@ -2241,8 +2241,6 @@ CABECERA
 
 }
 
-}
-
 /*--------------------------------------
 CONTENIDO DEL REGISTRO
 --------------------------------------*/
@@ -2298,6 +2296,8 @@ BARRA DE ATAJOS (NO NECESARIA EN MÓVIL)
     line-height:1.25;
 
     overflow-y:auto;
+
+}
 
 }
 
