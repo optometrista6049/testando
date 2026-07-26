@@ -186,9 +186,6 @@ function buildInventoryInfo(){
     inventoryActions = document.createElement("div");
     inventoryActions.id = "inventoryActions";
 
-    inventoryActions = document.createElement("div");
-    inventoryActions.id = "inventoryActions";
-
     const openButton = document.createElement("button");
     openButton.id = "inventoryOpenButton";
     openButton.textContent = "Abrir";
@@ -200,49 +197,26 @@ function buildInventoryInfo(){
     inventoryActions.appendChild(openButton);
     inventoryActions.appendChild(archiveButton);
 
-    inventoryDescription =
-        document.createElement("div");
+    inventoryBody = document.createElement("div");
+    inventoryBody.id = "inventoryBody";
 
-    inventoryDescription.id =
-        "inventoryDescription";
-
+    inventoryDescription = document.createElement("div");
+    inventoryDescription.id = "inventoryDescription";
     inventoryDescription.textContent =
         "Los objetos del inventario mostrarán aquí su información cuando sean seleccionados.";
 
-    inventoryInfo.appendChild(
-        inventoryHeader
-    );
+    inventoryInfo.appendChild(inventoryHeader);
+    inventoryInfo.appendChild(inventoryBody);
 
-    inventoryInfo.appendChild(
-        inventoryBody
-    );
+    inventoryHeader.appendChild(inventoryThumbnail);
+    inventoryHeader.appendChild(inventoryMeta);
 
-    inventoryHeader.appendChild(
-        inventoryThumbnail
-    );
+    inventoryMeta.appendChild(inventoryTitle);
+    inventoryMeta.appendChild(inventoryActions);
 
-    inventoryHeader.appendChild(
-    inventoryThumbnail
-    );
-
-    inventoryHeader.appendChild(
-    inventoryMeta
-    );
-
-    inventoryMeta.appendChild(
-    inventoryTitle
-    );
-
-    inventoryMeta.appendChild(
-    inventoryActions
-    );
-
-    inventoryBody.appendChild(
-        inventoryDescription
-    );
+    inventoryBody.appendChild(inventoryDescription);
 
 }
-
 
 
 
