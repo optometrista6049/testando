@@ -30,6 +30,13 @@ let inventoryBody = null;
 
 let inventoryDescription = null;
 
+
+let inventoryWorkspace = null;
+
+let inventoryLeft = null;
+
+let inventoryRight = null;
+
 /*========================================================
 CREAR MÓDULO
 ========================================================*/
@@ -57,8 +64,40 @@ CONSTRUIR MÓDULO
 function buildModule(){
 
     inventoryRoot = document.createElement("div");
-
     inventoryRoot.id = "inventoryModule";
+
+    buildWorkspace();
+
+}
+
+
+
+/*===================================================
+CREACION DE WORKSPACE PARA SOLUCIONAR PROBLEMA CON GRID 
+=======================================================*/
+
+function buildWorkspace(){
+
+    inventoryWorkspace = document.createElement("div");
+    inventoryWorkspace.id = "inventoryWorkspace";
+
+    inventoryLeft = document.createElement("div");
+    inventoryLeft.id = "inventoryLeft";
+
+    inventoryRight = document.createElement("div");
+    inventoryRight.id = "inventoryRight";
+
+    inventoryRoot.appendChild(
+        inventoryWorkspace
+    );
+
+    inventoryWorkspace.appendChild(
+        inventoryLeft
+    );
+
+    inventoryWorkspace.appendChild(
+        inventoryRight
+    );
 
     buildLeftPanel();
 
@@ -75,7 +114,7 @@ function buildLeftPanel(){
 
     inventoryGrid.id = "inventoryGrid";
 
-    inventoryRoot.appendChild(
+    inventoryLeft.appendChild(
 
         inventoryGrid
 
@@ -150,7 +189,7 @@ function buildRightPanel(){
 
     inventoryInfo.id = "inventoryInfo";
 
-    inventoryRoot.appendChild(
+    inventoryRight.appendChild(
 
         inventoryInfo
 
