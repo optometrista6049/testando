@@ -2193,6 +2193,44 @@ FORZAR OCULTACIÓN DE MÓDULOS HIDDEN
 
 }
 
+
+
+/*=====================================================*/
+/* WORKSPACE INVENTARIO */
+/*=====================================================*/
+
+#inventoryWorkspace{
+
+    display:flex;
+
+    flex-direction:row;
+
+    align-items:stretch;
+
+    width:100%;
+
+    height:100%;
+
+    gap:clamp(12px,1vw,24px);
+
+}
+
+#inventoryLeft{
+
+    flex:0 0 auto;
+
+}
+
+#inventoryRight{
+
+    flex:1 1 auto;
+
+    min-width:0;
+
+    display:flex;
+
+}
+
 /*=========================================================
 REGISTRY · RESPONSIVE MOBILE
 =========================================================*/
