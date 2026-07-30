@@ -1224,7 +1224,7 @@ BASE DE TODOS LOS MÓDULOS DEL REGISTRO
 }
 .registryModule.active{
 
-    display:grid;
+    display:block;
 
 }
 
