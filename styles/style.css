@@ -1213,13 +1213,6 @@ MÓDULO
 
 
 
-#inventoryInfoPanel{
-
-    flex:1 1 50%;
-
-    background:#2d4b6a;
-
-}
 
 
 
@@ -1231,9 +1224,7 @@ MÓDULO
 
     flex:1;
 
-    width:100%;
-
-    height:100%;
+    min-width:0;
 
     min-height:0;
 
@@ -1242,8 +1233,13 @@ MÓDULO
     padding-top:14px;
 
 }
-
 #inventoryGridPanel{
+
+    flex:2;
+
+    min-width:0;
+
+    min-height:0;
 
     display:flex;
 
@@ -1252,9 +1248,6 @@ MÓDULO
     box-sizing:border-box;
 
     overflow:hidden;
-
-    width:100%;
-    height:100%;
 
     border-radius:clamp(10px,.8vw,18px);
 
@@ -1273,7 +1266,7 @@ MÓDULO
 
 #inventoryInfoPanel{
 
-    flex:2;
+    flex:1;
 
     min-width:0;
 
