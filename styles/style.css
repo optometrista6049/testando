@@ -1235,7 +1235,7 @@ MÓDULO
 }
 #inventoryGridPanel{
 
-    flex:2;
+    flex:3;
 
     min-width:0;
 
@@ -1266,7 +1266,7 @@ MÓDULO
 
 #inventoryInfoPanel{
 
-    flex:1;
+    flex:2;
 
     min-width:0;
 
