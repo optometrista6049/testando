@@ -63,13 +63,24 @@ CONSTRUIR MÓDULO
 
 function buildModule(){
 
-    inventoryRoot = document.createElement("div");
-    inventoryRoot.id = "inventoryModule";
+   buildModuleContainer();
 
-    buildWorkspace();
+   buildTestLayout();
 
 }
 
+function buildTestLayout(){
+
+    const leftPanel = document.createElement("div");
+    leftPanel.id = "inventoryLeftTest";
+
+    const rightPanel = document.createElement("div");
+    rightPanel.id = "inventoryRightTest";
+
+    inventoryModule.appendChild(leftPanel);
+    inventoryModule.appendChild(rightPanel);
+
+}
 
 
 /*===================================================
