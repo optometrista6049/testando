@@ -17,9 +17,9 @@ import {
 
 import {
 
-    createInventoryModule
+    createInventoryModuleV2
 
-} from "./modules/inventoryModule.js";
+} from "./modules/inventoryModuleV2.js";
 
 import {
 
@@ -66,7 +66,7 @@ export function initializeRegistryModules(
 
         "inventory",
 
-        createInventoryModule()
+        createInventoryModuleV2()
 		
 		
 
@@ -76,7 +76,7 @@ export function initializeRegistryModules(
 
         "archive",
 
-         createArchiveModuleV2()
+         createArchiveModule()
 
 );
 
