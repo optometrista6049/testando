@@ -1294,6 +1294,84 @@ MÓDULO
 }
 
 /*=====================================================
+PANEL DERECHO V2
+=====================================================*/
+
+#inventoryInfoPanel{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+    padding:16px;
+
+    box-sizing:border-box;
+
+}
+
+#inventoryPreviewHeader{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+}
+
+#inventoryPreviewImage{
+
+    width:96px;
+
+    aspect-ratio:1;
+
+    border-radius:12px;
+
+    background:#3b5b78;
+
+    flex-shrink:0;
+
+}
+
+#inventoryPreviewTitle{
+
+    font-size:1.2rem;
+
+    font-weight:bold;
+
+    color:#ffffff;
+
+}
+
+#inventoryDescription{
+
+    flex:1;
+
+    color:#d7e3ef;
+
+    line-height:1.5;
+
+}
+
+#inventoryActions{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+}
+
+#inventoryActions button{
+
+    flex:1;
+
+}
+
+/*=====================================================
 BASE DE TODOS LOS MÓDULOS DEL REGISTRO
 =====================================================*/
 
