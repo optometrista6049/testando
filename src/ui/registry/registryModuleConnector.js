@@ -76,7 +76,7 @@ export function initializeRegistryModules(
 
         "archive",
 
-         createArchiveModule()
+         createArchiveModuleV2()
 
 );
 
