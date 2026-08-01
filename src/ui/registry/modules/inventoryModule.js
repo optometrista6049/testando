@@ -78,30 +78,17 @@ CREACION DE WORKSPACE PARA SOLUCIONAR PROBLEMA CON GRID
 
 function buildWorkspace(){
 
-    inventoryWorkspace = document.createElement("div");
-    inventoryWorkspace.id = "inventoryWorkspace";
-
-    inventoryLeft = document.createElement("div");
-    inventoryLeft.id = "inventoryLeft";
-
-    inventoryRight = document.createElement("div");
-    inventoryRight.id = "inventoryRight";
-
-    inventoryRoot.appendChild(
-        inventoryWorkspace
-    );
-
-    inventoryWorkspace.appendChild(
-        inventoryLeft
-    );
-
-    inventoryWorkspace.appendChild(
-        inventoryRight
-    );
-
     buildLeftPanel();
 
     buildRightPanel();
+
+    inventoryModule.appendChild(
+        inventoryGrid
+    );
+
+    inventoryModule.appendChild(
+        inventoryInfo
+    );
 
 }
 /*========================================================
