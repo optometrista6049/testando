@@ -26,6 +26,18 @@ function buildLayout(){
     const slots = document.createElement("div");
     slots.id = "inventorySlots";
 
+    for (let i = 0; i < 20; i++) {
+
+    const cell = document.createElement("div");
+
+    cell.className = "inventoryCell empty";
+
+    cell.dataset.slot = i;
+
+    slots.appendChild(cell);
+
+}
+
     const infoPanel = document.createElement("section");
     infoPanel.id = "inventoryInfoPanel";
 
