@@ -15,14 +15,25 @@ export function createInventoryModuleV2() {
     return inventoryModule;
 }
 
-function buildLayout() {
+function buildLayout(){
+
+    const body = document.createElement("div");
+    body.id = "inventoryBody";
 
     const gridPanel = document.createElement("section");
     gridPanel.id = "inventoryGridPanel";
 
+    const slots = document.createElement("div");
+    slots.id = "inventorySlots";
+
     const infoPanel = document.createElement("section");
     infoPanel.id = "inventoryInfoPanel";
 
-    inventoryModule.appendChild(gridPanel);
-    inventoryModule.appendChild(infoPanel);
+    gridPanel.appendChild(slots);
+
+    body.appendChild(gridPanel);
+    body.appendChild(infoPanel);
+
+    inventoryModule.appendChild(body);
+
 }
