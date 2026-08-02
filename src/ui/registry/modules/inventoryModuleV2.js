@@ -95,13 +95,31 @@ actions.appendChild(saveButton);
 // ENSAMBLAJE
 // ======================================================
 
-infoPanel.appendChild(previewHeader);
-infoPanel.appendChild(description);
-infoPanel.appendChild(actions);
+// ======================================================
+// CONTENEDOR INTERNO DEL PANEL DERECHO
+// (misma filosofía que los diálogos)
+// ======================================================
 
-    body.appendChild(gridPanel);
-    body.appendChild(infoPanel);
+const infoContent = document.createElement("div");
+infoContent.id = "inventoryInfoContent";
 
-    inventoryModule.appendChild(body);
+// ======================================================
+// ENSAMBLAJE DEL PANEL DERECHO
+// ======================================================
+
+infoContent.appendChild(previewHeader);
+infoContent.appendChild(description);
+infoContent.appendChild(actions);
+
+infoPanel.appendChild(infoContent);
+
+// ======================================================
+// ENSAMBLAJE GENERAL
+// ======================================================
+
+body.appendChild(gridPanel);
+body.appendChild(infoPanel);
+
+inventoryModule.appendChild(body);
 
 }
