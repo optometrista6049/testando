@@ -7,6 +7,11 @@
 
 let inventoryModule;
 
+let previewImage;
+let previewTitle;
+let description;
+let actions;
+
 export function createInventoryModuleV2() {
 
     inventoryModule = document.createElement("section");
@@ -55,12 +60,12 @@ previewHeader.id = "inventoryPreviewHeader";
 
 // Miniatura
 
-const previewImage = document.createElement("div");
+previewImage = document.createElement("div");
 previewImage.id = "inventoryPreviewImage";
 
 // Nombre
 
-const previewTitle = document.createElement("div");
+previewTitle = document.createElement("div");
 previewTitle.id = "inventoryPreviewTitle";
 previewTitle.textContent = "Selecciona un objeto";
 
@@ -71,7 +76,7 @@ previewHeader.appendChild(previewTitle);
 // DESCRIPCIÓN
 // ======================================================
 
-const description = document.createElement("div");
+description = document.createElement("div");
 description.id = "inventoryDescription";
 description.textContent =
     "Selecciona un objeto del inventario para ver su información.";
@@ -80,7 +85,7 @@ description.textContent =
 // ACCIONES
 // ======================================================
 
-const actions = document.createElement("div");
+actions = document.createElement("div");
 actions.id = "inventoryActions";
 
 const openButton = document.createElement("button");
