@@ -18,7 +18,8 @@ export function createInventoryModuleV2() {
     inventoryModule.id = "inventoryModule";
 
     buildLayout();
-	
+
+    initializeInfoPanel();
 
     return inventoryModule;
 }
@@ -129,5 +130,22 @@ body.appendChild(gridPanel);
 body.appendChild(infoPanel);
 
 inventoryModule.appendChild(body);
+
+}
+
+// ======================================================
+// ESTADO INICIAL DEL PANEL DERECHO
+// ======================================================
+
+function initializeInfoPanel(){
+
+    previewImage.style.backgroundImage = "";
+
+    previewTitle.textContent = "";
+
+    description.textContent =
+        "Selecciona un objeto del inventario para ver su información.";
+
+    actions.style.display = "none";
 
 }
