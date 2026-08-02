@@ -1395,6 +1395,20 @@ word-break:break-word;
 
 }
 
+.inventoryCell img{
+
+    width:80%;
+
+    height:80%;
+
+    object-fit:contain;
+
+    pointer-events:none;
+
+    user-select:none;
+
+}
+
 /*=====================================================
 BASE DE TODOS LOS MÓDULOS DEL REGISTRO
 =====================================================*/
