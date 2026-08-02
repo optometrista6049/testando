@@ -3,6 +3,9 @@
 // Arquitectura limpia - Versión inicial
 // ======================================================
 
+import { renderInventoryPanel }
+from "./inventoryPanelRenderer.js";
+
 let inventoryModule;
 
 export function createInventoryModuleV2() {
@@ -11,6 +14,12 @@ export function createInventoryModuleV2() {
     inventoryModule.id = "inventoryModule";
 
     buildLayout();
+	
+	renderInventoryPanel({
+
+    type:"empty"
+
+    });
 
     return inventoryModule;
 }
