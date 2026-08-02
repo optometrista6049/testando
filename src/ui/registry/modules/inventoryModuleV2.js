@@ -139,13 +139,57 @@ inventoryModule.appendChild(body);
 
 function initializeInfoPanel(){
 
-    previewImage.style.backgroundImage = "";
+    setPreviewImage(null);
 
-    previewTitle.textContent = "";
+    setPreviewTitle("");
 
-    description.textContent =
-        "Selecciona un objeto del inventario para ver su información.";
+    setDescription(
+        "Selecciona un objeto del inventario para ver su información."
+    );
 
     actions.style.display = "none";
+
+}
+
+// ======================================================
+// CAMBIAR MINIATURA
+// ======================================================
+
+function setPreviewImage(imageURL){
+
+    if(!imageURL){
+
+        previewImage.style.backgroundImage = "";
+
+        return;
+
+    }
+
+    previewImage.style.backgroundImage =
+        `url(${imageURL})`;
+
+    previewImage.style.backgroundSize = "cover";
+
+    previewImage.style.backgroundPosition = "center";
+
+}
+
+// ======================================================
+// CAMBIAR NOMBRE
+// ======================================================
+
+function setPreviewTitle(text){
+
+    previewTitle.textContent = text || "";
+
+}
+
+// ======================================================
+// CAMBIAR DESCRIPCIÓN
+// ======================================================
+
+function setDescription(text){
+
+    description.textContent = text || "";
 
 }
