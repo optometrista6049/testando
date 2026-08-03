@@ -8,6 +8,8 @@ import { registryCatalog } from "../registryCatalog.js";
 
 let inventoryModule;
 
+let inventoryCells = [];
+
 // ======================================================
 // INVENTARIO TEMPORAL DE PRUEBA
 // (se sustituirá más adelante por el estado real)
@@ -18,6 +20,12 @@ const inventoryObjects = [
     registryCatalog.badgeBox
 
 ];
+
+// ======================================================
+// OBJETO ACTUALMENTE SELECCIONADO
+// ======================================================
+
+let selectedObject = null;
 
 let previewImage;
 let previewTitle;
@@ -123,7 +131,8 @@ for (let i = 0; i < 20; i++) {
         cell.className = "inventoryCell empty";
 
     }
-
+	
+    inventoryCells.push(cell);
     slots.appendChild(cell);
 
 }
@@ -149,7 +158,7 @@ previewImage.id = "inventoryPreviewImage";
 
 previewTitle = document.createElement("div");
 previewTitle.id = "inventoryPreviewTitle";
-previewTitle.textContent = "Selecciona un objeto";
+
 
 previewHeader.appendChild(previewImage);
 previewHeader.appendChild(previewTitle);
@@ -160,8 +169,7 @@ previewHeader.appendChild(previewTitle);
 
 description = document.createElement("div");
 description.id = "inventoryDescription";
-description.textContent =
-    "Selecciona un objeto del inventario para ver su información.";
+
 
 // ======================================================
 // ACCIONES
@@ -212,26 +220,119 @@ body.appendChild(infoPanel);
 
 inventoryModule.appendChild(body);
 
+refreshGrid();
+
 }
 
 // ======================================================
-// ESTADO INICIAL DEL PANEL DERECHO
+// ESTADO INICIAL PANEL DERECHO
 // ======================================================
-
 function initializeInfoPanel(){
 
-    setPreviewImage(null);
+    // ------------------------------------------
+    // Miniatura
+    // ------------------------------------------
 
-    setPreviewTitle("");
+    previewImage.style.backgroundImage = "";
 
-    setDescription(
-        "Selecciona un objeto del inventario para ver su información."
-    );
+    // ------------------------------------------
+    // Título
+    // ------------------------------------------
+
+    previewTitle.textContent =
+        "Selecciona un objeto";
+
+    // ------------------------------------------
+    // Descripción
+    // ------------------------------------------
+
+    description.textContent =
+        "Selecciona un objeto del inventario para ver su información.";
+
+    // ------------------------------------------
+    // Acciones
+    // ------------------------------------------
 
     showActions(false);
 
 }
 
+
+// ======================================================
+// SELECCIONAR OBJETO
+// ======================================================
+
+function selectObject(object){
+
+    selectedObject = object;
+
+    refreshGrid();
+
+}
+
+
+// ======================================================
+// ACTUALIZAR GRID
+// ======================================================
+
+function refreshGrid(){
+
+    for(let i = 0; i < inventoryCells.length; i++){
+
+        const cell = inventoryCells[i];
+        const object = inventoryObjects[i];
+
+        //-------------------------------------------------
+        // Limpiar contenido anterior
+        //-------------------------------------------------
+
+        cell.innerHTML = "";
+
+        //-------------------------------------------------
+        // Estado vacío
+        //-------------------------------------------------
+
+        if(!object){
+
+            cell.className = "inventoryCell empty";
+
+            continue;
+
+        }
+
+        //-------------------------------------------------
+        // Estado ocupado
+        //-------------------------------------------------
+
+        cell.className = "inventoryCell occupied";
+
+        //-------------------------------------------------
+        // Estado seleccionado
+        //-------------------------------------------------
+
+        if(selectedObject === object){
+
+            cell.classList.add("selected");
+
+        }
+
+        //-------------------------------------------------
+        // Miniatura
+        //-------------------------------------------------
+
+        const icon = document.createElement("img");
+
+        icon.src = object.thumbnail;
+
+        icon.alt = object.title;
+
+        icon.draggable = false;
+
+        cell.appendChild(icon);
+
+    }
+
+}
 // ======================================================
 // MOSTRAR DOCUMENTO
 // ======================================================
