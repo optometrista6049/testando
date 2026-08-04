@@ -107,6 +107,16 @@ for (let i = 0; i < 20; i++) {
     cell.dataset.slot = i;
 
     //-------------------------------------------------
+    // Selección del objeto representado
+    //-------------------------------------------------
+
+    cell.addEventListener("click", () => {
+
+    selectObject(cell.inventoryObject);
+
+    });
+
+    //-------------------------------------------------
     // ¿Existe un objeto en esta posición?
     //-------------------------------------------------
 
@@ -261,10 +271,55 @@ function initializeInfoPanel(){
 // ======================================================
 // SELECCIONAR OBJETO
 // ======================================================
-
 function selectObject(object){
 
+    //-------------------------------------------------
+    // Si pulsamos sobre un hueco vacío
+    //-------------------------------------------------
+
+    if(!object){
+
+        selectedObject = null;
+
+        initializeInfoPanel();
+
+        refreshGrid();
+
+        return;
+
+    }
+
+    //-------------------------------------------------
+    // Si pulsamos el mismo objeto, se deselecciona
+    //-------------------------------------------------
+
+    if(selectedObject === object){
+
+        selectedObject = null;
+
+        initializeInfoPanel();
+
+        refreshGrid();
+
+        return;
+
+    }
+
+    //-------------------------------------------------
+    // Nueva selección
+    //-------------------------------------------------
+
     selectedObject = object;
+
+    //-------------------------------------------------
+    // Mostrar información
+    //-------------------------------------------------
+
+    displayItem(object);
+
+    //-------------------------------------------------
+    // Actualizar grid
+    //-------------------------------------------------
 
     refreshGrid();
 
@@ -281,6 +336,11 @@ function refreshGrid(){
 
         const cell = inventoryCells[i];
         const object = inventoryObjects[i];
+		
+    //-------------------------------------------------
+    // Asociar el objeto a la casilla
+    //-------------------------------------------------
+		cell.inventoryObject = object ?? null;
 
         //-------------------------------------------------
         // Limpiar contenido anterior
