@@ -412,14 +412,37 @@ function displayDocument(documentData){
 // ======================================================
 // MOSTRAR OBJETO NORMAL
 // ======================================================
-
 function displayItem(itemData){
 
-    setPreviewImage(itemData.image);
+    if(!itemData){
+
+        initializeInfoPanel();
+
+        return;
+
+    }
+
+    //-------------------------------------------------
+    // Miniatura
+    //-------------------------------------------------
+
+    setPreviewImage(itemData.thumbnail);
+
+    //-------------------------------------------------
+    // Nombre
+    //-------------------------------------------------
 
     setPreviewTitle(itemData.title);
 
+    //-------------------------------------------------
+    // Descripción
+    //-------------------------------------------------
+
     setDescription(itemData.description);
+
+    //-------------------------------------------------
+    // Acciones
+    //-------------------------------------------------
 
     showActions(false);
 
