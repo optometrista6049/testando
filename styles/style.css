@@ -1348,7 +1348,7 @@ aspect-ratio:1;
 
 border-radius:clamp(8px,.6vw,14px);
 
-background:#3b5b78;
+background:transparent;
 
 flex-shrink:0;
 }
