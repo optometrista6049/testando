@@ -16,9 +16,8 @@ import {
 } from "./registryContentManager.js";
 
 import {
-
-    createInventoryModuleV2
-
+    createInventoryModuleV2,
+    resetInventoryVisualState
 } from "./modules/inventoryModuleV2.js";
 
 import {
@@ -165,5 +164,13 @@ export function showRegistrySection(index){
 export function getCurrentRegistrySection(){
 
     return getCurrentRegistryModule();
+
+}
+//======================================================
+// REINICIAR ESTADO VISUAL DE LOS MÓDULOS
+//======================================================
+export function resetRegistryModulesVisualState(){
+
+    resetInventoryVisualState();
 
 }
