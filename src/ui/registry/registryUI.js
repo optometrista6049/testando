@@ -12,7 +12,8 @@ import {
 
 import {
     initializeRegistryModules,
-    showRegistrySection
+    showRegistrySection,
+    resetRegistryModulesVisualState
 } from "./registryModuleConnector.js";
 
 let initialized = false;
@@ -389,10 +390,10 @@ export function openRegistry(){
 
     updateRegistryTabs();
 
+    resetRegistryModulesVisualState();
+
     showRegistrySection(
-
-        activeSection
-
+       activeSection
     );
 
 }
