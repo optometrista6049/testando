@@ -267,6 +267,18 @@ function initializeInfoPanel(){
 
 }
 
+// ======================================================
+// LIMPIAR SELECCIÓN
+// ======================================================
+function clearSelection(){
+
+    selectedObject = null;
+
+    initializeInfoPanel();
+
+    refreshGrid();
+
+}
 
 // ======================================================
 // SELECCIONAR OBJETO
@@ -277,33 +289,25 @@ function selectObject(object){
     // Si pulsamos sobre un hueco vacío
     //-------------------------------------------------
 
-    if(!object){
+if(!object){
 
-        selectedObject = null;
+    clearSelection();
 
-        initializeInfoPanel();
+    return;
 
-        refreshGrid();
-
-        return;
-
-    }
+}
 
     //-------------------------------------------------
     // Si pulsamos el mismo objeto, se deselecciona
     //-------------------------------------------------
 
-    if(selectedObject === object){
+if(selectedObject === object){
 
-        selectedObject = null;
+    clearSelection();
 
-        initializeInfoPanel();
+    return;
 
-        refreshGrid();
-
-        return;
-
-    }
+}
 
     //-------------------------------------------------
     // Nueva selección
@@ -499,5 +503,14 @@ function showActions(show){
 
     actions.style.display =
         show ? "flex" : "none";
+
+}
+
+// ======================================================
+// REINICIAR ESTADO VISUAL
+// ======================================================
+export function resetInventoryVisualState(){
+
+    clearSelection();
 
 }
