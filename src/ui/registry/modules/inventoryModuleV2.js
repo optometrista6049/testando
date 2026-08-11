@@ -599,3 +599,47 @@ export function resetInventoryVisualState(){
     clearSelection();
 
 }
+
+
+// ======================================================
+// PRUEBA TEMPORAL DEL INVENTARIO
+// ======================================================
+
+export function testInventoryAPI(){
+
+    console.log(
+        "¿Tiene caja antes?",
+        hasInventoryItem("badgeBox")
+    );
+
+    console.log(
+        "Añadiendo caja:",
+        addInventoryItem("badgeBox")
+    );
+
+    console.log(
+        "¿Tiene caja después de añadir?",
+        hasInventoryItem("badgeBox")
+    );
+
+    console.log(
+        "Objetos actuales:",
+        getInventoryItems()
+    );
+
+    console.log(
+        "Eliminando caja:",
+        removeInventoryItem("badgeBox")
+    );
+
+    console.log(
+        "¿Tiene caja después de eliminar?",
+        hasInventoryItem("badgeBox")
+    );
+
+    console.log(
+        "Objetos finales:",
+        getInventoryItems()
+    );
+
+}
