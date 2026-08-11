@@ -612,13 +612,16 @@ export function testInventoryAPI(){
         hasInventoryItem("badgeBox")
     );
 
+    const added =
+        addInventoryItem("badgeBox");
+
     console.log(
-        "Añadiendo caja:",
-        addInventoryItem("badgeBox")
+        "Caja añadida:",
+        added
     );
 
     console.log(
-        "¿Tiene caja después de añadir?",
+        "¿Tiene caja ahora?",
         hasInventoryItem("badgeBox")
     );
 
@@ -627,20 +630,28 @@ export function testInventoryAPI(){
         getInventoryItems()
     );
 
-    console.log(
-        "Eliminando caja:",
-        removeInventoryItem("badgeBox")
-    );
+    // Esperamos 5 segundos antes de eliminarla
 
-    console.log(
-        "¿Tiene caja después de eliminar?",
-        hasInventoryItem("badgeBox")
-    );
+    setTimeout(() => {
 
-    console.log(
-        "Objetos finales:",
-        getInventoryItems()
-    );
+        console.log(
+            "Eliminando caja..."
+        );
+
+        const removed =
+            removeInventoryItem("badgeBox");
+
+        console.log(
+            "Caja eliminada:",
+            removed
+        );
+
+        console.log(
+            "¿Tiene caja ahora?",
+            hasInventoryItem("badgeBox")
+        );
+
+    }, 5000);
 
 }
 
