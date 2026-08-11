@@ -643,3 +643,5 @@ export function testInventoryAPI(){
     );
 
 }
+
+window.testInventoryAPI = testInventoryAPI;
