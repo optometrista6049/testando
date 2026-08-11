@@ -11,21 +11,106 @@ let inventoryModule;
 let inventoryCells = [];
 
 // ======================================================
-// INVENTARIO TEMPORAL DE PRUEBA
-// (se sustituirá más adelante por el estado real)
+// ESTADO REAL DEL INVENTARIO
 // ======================================================
 
-const inventoryObjects = [
-
-    registryCatalog.badgeBox
-
-];
+const inventoryObjects = [];
 
 // ======================================================
 // OBJETO ACTUALMENTE SELECCIONADO
 // ======================================================
 
 let selectedObject = null;
+
+
+// ======================================================
+// API DEL INVENTARIO
+// ======================================================
+
+export function addInventoryItem(itemId){
+
+    const item = registryCatalog[itemId];
+
+    if(!item){
+
+        console.warn(
+            `Objeto no encontrado en registryCatalog: ${itemId}`
+        );
+
+        return false;
+
+    }
+
+    if(inventoryObjects.includes(item)){
+
+        return false;
+
+    }
+
+    if(inventoryObjects.length >= 20){
+
+        console.warn(
+            "El inventario está lleno."
+        );
+
+        return false;
+
+    }
+
+    inventoryObjects.push(item);
+
+    refreshGrid();
+
+    return true;
+
+}
+
+
+export function removeInventoryItem(itemId){
+
+    const index =
+        inventoryObjects.findIndex(
+            item => item.id === itemId
+        );
+
+    if(index === -1){
+
+        return false;
+
+    }
+
+    const removedItem =
+        inventoryObjects.splice(index,1)[0];
+
+    if(selectedObject === removedItem){
+
+        selectedObject = null;
+
+        initializeInfoPanel();
+
+    }
+
+    refreshGrid();
+
+    return true;
+
+}
+
+
+export function hasInventoryItem(itemId){
+
+    return inventoryObjects.some(
+        item => item.id === itemId
+    );
+
+}
+
+
+export function getInventoryItems(){
+
+    return [...inventoryObjects];
+
+}
 
 let previewImage;
 let previewTitle;
