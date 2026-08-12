@@ -208,6 +208,7 @@ export function getMissionState(){
 
 }
 
+
 // ======================================================
 // PRUEBA TEMPORAL DEL SISTEMA DE MISIONES
 // ======================================================
@@ -286,6 +287,11 @@ export function testMissionSystem(){
     );
 
 }
+
+
+// ======================================================
+// ACCESO TEMPORAL DESDE CONSOLA
+// ======================================================
 
 window.testMissionSystem =
     testMissionSystem;
