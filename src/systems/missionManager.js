@@ -44,6 +44,47 @@ export function startMission(
 
 
 // ======================================================
+// INICIAR MISIÓN DESDE SU DEFINICIÓN
+// ======================================================
+
+export function startMissionFromData(
+
+    mission
+
+){
+
+    if(!mission){
+
+        console.warn(
+            'No se puede iniciar una misión inexistente.'
+        );
+
+        return false;
+
+    }
+
+    if(!mission.id){
+
+        console.warn(
+            'La misión no tiene un id válido.'
+        );
+
+        return false;
+
+    }
+
+    return startMission(
+
+        mission.id,
+
+        mission.objectives
+
+    );
+
+}
+
+
+// ======================================================
 // CONSULTAR MISIÓN ACTIVA
 // ======================================================
 
@@ -207,4 +248,3 @@ export function getMissionState(){
     };
 
 }
-
